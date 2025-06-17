@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Email Template</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <table style="width: 100%; max-width: 1200px; margin: 0 auto; padding: 20px; font-family: Arial, sans-serif; color: #333333; border-collapse: collapse;">
+        <tr>
+            <td>
+                <!-- Header Section -->
+                <table style="width: 100%; border-bottom: 1px solid black; padding-bottom: 10px;">
+                    <tr>
+                        <td style="text-align: left;">
+                            <p id='name' style="margin: 0; font-weight: bold;">COLIN BARR</p>
+                            <p id='title' style="margin: 0;">SENIOR FINANCIAL ADVISOR</p>
+                            <p id='digest-title' style="margin: 0;">WEEKLY ADVISOR DIGEST</p>
+                        </td>
+                        <td style="text-align: right;">
+                            <table style="border-collapse: collapse; float: right;">
+                                <tr>
+                                    <td style="width:40px; padding: 0 5px; border-right: 1px solid black; text-align: right;">
+                                        <div style="background-color: black; padding: 5px 5px 5px 5px; border-radius: 25px;">
+                                            <div style="padding: 0 5px; text-align: center; color: white;">Mon</div>
+                                            <div style="padding: 0 5px; text-align: center; color: white; font-weight: bold;">5</div>
+                                        </div>
+                                    </td>
+                                    <td style="width:40px; padding: 0 5px; border-right: 1px solid black; text-align: right;">
+                                        <div style="padding: 5px 5px 5px 5px;">
+                                            <div style="padding: 0 5px; text-align: center;">Tue</div>
+                                            <div style="padding: 0 5px; text-align: center; font-weight: bold;">6</div>
+                                        </div>
+                                    </td>
+                                    <td style="width:40px; padding: 0 5px; border-right: 1px solid black; text-align: right;">
+                                        <div style="padding: 5px 5px 5px 5px;">
+                                            <div style="padding: 0 5px; text-align: center;">Wed</div>
+                                            <div style="padding: 0 5px; text-align: center; font-weight: bold;">7</div>
+                                        </div>
+                                    </td>
+                                    <td style="width:40px; padding: 0 5px; border-right: 1px solid black; text-align: right;">
+                                        <div style="padding: 5px 5px 5px 5px;">
+                                            <div style="padding: 0 5px; text-align: center;">Thu</div>
+                                            <div style="padding: 0 5px; text-align: center; font-weight: bold;">8</div>
+                                        </div>
+                                    </td>
+                                    <td style="width:40px; padding: 0 5px; border-right: 1px solid black; text-align: right;">
+                                        <div style="padding: 5px 5px 5px 5px;">
+                                            <div style="padding: 0 5px; text-align: center;">Fri</div>
+                                            <div style="padding: 0 5px; text-align: center; font-weight: bold;">9</div>
+                                        </div>
+                                    </td>
+                                    <td style="width:40px; padding: 0 5px; border-right: 1px solid black; text-align: right;">
+                                        <div style="padding: 5px 5px 5px 5px;">
+                                            <div style="padding: 0 5px; text-align: center;">Sat</div>
+                                            <div style="padding: 0 5px; text-align: center; font-weight: bold;">10</div>
+                                        </div>
+                                    </td> 
+                                    <td style="width:40px; padding: 0 5px; text-align: right;">
+                                        <div style="padding: 5px 5px 5px 5px;">
+                                            <div style="padding: 0 5px; text-align: center;">Sun</div>
+                                            <div style="padding: 0 5px; text-align: center; font-weight: bold;">11</div>
+                                        </div>
+                                    </td>                       
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Matured Mortgages Section -->
+                <table style="width: 100%; margin-top: 20px;">
+                    <tr>
+                        <td colspan="4" style="padding: 10px; background-color: #f0f0f0; text-align: center; font-weight: bold; font-size: 18px;">
+                            MATURED MORTGAGES
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid #ccc; padding: 10px; background-color: #fff; border-radius: 0; width: 25%;">
+                            <table style="width: 100%; border-spacing: 0;">
+                                <% maturedMortgages.forEach(function(mortgage) { %>
+                                <tr class="mortgage">
+                                    <td style="width: 60px; text-align: center; vertical-align: top;">
+                                        <div style="padding-top: 5px; background-color: black; color: white; width: 40px; height: 35px; text-align: center; line-height: 15px; border-radius: 100px;">
+                                            <div style="font-size: 10px;"><%= mortgage.month %></div>
+                                            <div style="font-size: 12px; font-weight: bold;"><%= mortgage.day %></div>
+                                        </div>
+                                    </td>
+                                    <td style="padding-left: 10px; vertical-align: top;">
+                                        <div style="font-weight: bold; font-size: 14px;"><%= mortgage.amount %></div>
+                                        <div style="margin-top: 2px; font-size: 14px;"><%= mortgage.client %></div>
+                                    </td>
+                                    <td style="text-align: right; vertical-align: top; font-size: 10px;">
+                                        <a href="<%= mortgage.crmLink %>" style="display: inline-block; background-color: black; color: white; text-decoration: none; padding: 5px; font-weight: bold; border-radius: 10px;">CRM</a>
+                                    </td>
+                                </tr>
+                                <% }); %>
+                            </table>
+                            <hr style="margin: 5px 0; border: none; border-top: 1px solid #ccc;">
+                            <div style="font-style: italic; font-size: 10px; text-align: right;">Updated <%= lastUpdated %> days ago</div>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Renewing Mortgages Section -->
+                <table style="width: 100%; margin-top: 20px;">
+                    <tr>
+                        <td colspan="4" style="padding: 10px; background-color: #f0f0f0; text-align: center; font-weight: bold; font-size: 18px;">
+                            RENEWING MORTGAGES
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: top; width: 25%; border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9;">
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td style="text-align: center; font-weight: bold; font-size: 16px;">30 DAYS</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center; font-size: 14px;"><%= renewingMortgages['30Days'].count %></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center; font-size: 14px;"><%= renewingMortgages['30Days'].total %></td>
+                                </tr>
+                            </table>
+                            <% renewingMortgages['30Days'].items.forEach(function(mortgage) { %>
+                            <div style="border: 1px solid #ccc; padding: 10px; background-color: #fff; border-radius: 10px; margin-top: 10px;">
+                                <table style="width: 100%; border-spacing: 0;">
+                                    <tr class="mortgage-renewal">
+                                        <td style="width: 60px; text-align: center; vertical-align: top;">
+                                            <div style="padding-top: 5px; background-color: black; color: white; width: 40px; height: 35px; text-align: center; line-height: 15px; border-radius: 100px;">
+                                                <div style="font-size: 10px;"><%= mortgage.month %></div>
+                                                <div style="font-size: 12px; font-weight: bold;"><%= mortgage.day %></div>
+                                            </div>
+                                        </td>
+                                        <td style="padding-left: 10px; vertical-align: top;">
+                                            <div style="font-weight: bold; font-size: 14px;"><%= mortgage.amount %></div>
+                                            <div style="margin-top: 2px; font-size: 14px;"><%= mortgage.client %></div>
+                                        </td>
+                                        <td style="text-align: right; vertical-align: top; font-size: 10px;">
+                                            <a href="<%= mortgage.crmLink %>" style="display: inline-block; background-color: black; color: white; text-decoration: none; padding: 5px; font-weight: bold; border-radius: 10px;">CRM</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <hr style="margin: 5px 0; border: none; border-top: 1px solid #ccc;">
+                                <div style="font-style: italic; font-size: 10px; text-align: right;">Updated <%= mortgage.lastUpdated %> days ago</div>
+                            </div>
+                            <% }); %>
+                        </td>
+                        <!-- Repeat similar structure for other columns -->
+                        <td style="vertical-align: top; width: 25%; border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9;">
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td style="text-align: center; font-weight: bold; font-size: 16px;">60 DAYS</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center; font-size: 14px;"><%= renewingMortgages['60Days'].count %></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center; font-size: 14px;"><%= renewingMortgages['60Days'].total %></td>
+                                </tr>
+                            </table>
+                            <% renewingMortgages['60Days'].items.forEach(function(mortgage) { %>
+                            <div style="border: 1px solid #ccc; padding: 10px; background-color: #fff; border-radius: 10px; margin-top: 10px;">
+                                <table style="width: 100%; border-spacing: 0;">
+                                    <tr class="mortgage-renewal">
+                                        <td style="width: 60px; text-align: center; vertical-align: top;">
+                                            <div style="padding-top: 5px; background-color: black; color: white; width: 40px; height: 35px; text-align: center; line-height: 15px; border-radius: 100px;">
+                                                <div style="font-size: 10px;"><%= mortgage.month %></div>
+                                                <div style="font-size: 12px; font-weight: bold;"><%= mortgage.day %></div>
+                                            </div>
+                                        </td>
+                                        <td style="padding-left: 10px; vertical-align: top;">
+                                            <div style="font-weight: bold; font-size: 14px;"><%= mortgage.amount %></div>
+                                            <div style="margin-top: 2px; font-size: 14px;"><%= mortgage.client %></div>
+                                        </td>
+                                        <td style="text-align: right; vertical-align: top; font-size: 10px;">
+                                            <a href="<%= mortgage.crmLink %>" style="display: inline-block; background-color: black; color: white; text-decoration: none; padding: 5px; font-weight: bold; border-radius: 10px;">CRM</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <hr style="margin: 5px 0; border: none; border-top: 1px solid #ccc;">
+                                <div style="font-style: italic; font-size: 10px; text-align: right;">Updated <%= mortgage.lastUpdated %> days ago</div>
+                            </div>
+                            <% }); %>
+                        </td>
+                        <td style="vertical-align: top; width: 25%; border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9;">
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td style="text-align: center; font-weight: bold; font-size: 16px;">90 DAYS</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center; font-size: 14px;"><%= renewingMortgages['90Days'].count %></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center; font-size: 14px;"><%= renewingMortgages['90Days'].total %></td>
+                                </tr>
+                            </table>
+                            <% renewingMortgages['90Days'].items.forEach(function(mortgage) { %>
+                            <div style="border: 1px solid #ccc; padding: 10px; background-color: #fff; border-radius: 10px; margin-top: 10px;">
+                                <table style="width: 100%; border-spacing: 0;">
+                                    <tr class="mortgage-renewal">
+                                        <td style="width: 60px; text-align: center; vertical-align: top;">
+                                            <div style="padding-top: 5px; background-color: black; color: white; width: 40px; height: 35px; text-align: center; line-height: 15px; border-radius: 100px;">
+                                                <div style="font-size: 10px;"><%= mortgage.month %></div>
+                                                <div style="font-size: 12px; font-weight: bold;"><%= mortgage.day %></div>
+                                            </div>
+                                        </td>
+                                        <td style="padding-left: 10px; vertical-align: top;">
+                                            <div style="font-weight: bold; font-size: 14px;"><%= mortgage.amount %></div>
+                                            <div style="margin-top: 2px; font-size: 14px;"><%= mortgage.client %></div>
+                                        </td>
+                                        <td style="text-align: right; vertical-align: top; font-size: 10px;">
+                                            <a href="<%= mortgage.crmLink %>" style="display: inline-block; background-color: black; color: white; text-decoration: none; padding: 5px; font-weight: bold; border-radius: 10px;">CRM</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <hr style="margin: 5px 0; border: none; border-top: 1px solid #ccc;">
+                                <div style="font-style: italic; font-size: 10px; text-align: right;">Updated <%= mortgage.lastUpdated %> days ago</div>
+                            </div>
+                            <% }); %>
+                        </td>
+                        <td style="vertical-align: top; width: 25%; border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9;">
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td style="text-align: center; font-weight: bold; font-size: 16px;">4-6 Months</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center; font-size: 14px;"><%= renewingMortgages['4-6Months'].count %></td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center; font-size: 14px;"><%= renewingMortgages['4-6Months'].total %></td>
+                                </tr>
+                            </table>
+                            <% renewingMortgages['4-6Months'].items.forEach(function(mortgage) { %>
+                            <div style="border: 1px solid #ccc; padding: 10px; background-color: #fff; border-radius: 10px; margin-top: 10px;">
+                                <table style="width: 100%; border-spacing: 0;">
+                                    <tr class="mortgage-renewal">
+                                        <td style="width: 60px; text-align: center; vertical-align: top;">
+                                            <div style="padding-top: 5px; background-color: black; color: white; width: 40px; height: 35px; text-align: center; line-height: 15px; border-radius: 100px;">
+                                                <div style="font-size: 10px;"><%= mortgage.month %></div>
+                                                <div style="font-size: 12px; font-weight: bold;"><%= mortgage.day %></div>
+                                            </div>
+                                        </td>
+                                        <td style="padding-left: 10px; vertical-align: top;">
+                                            <div style="font-weight: bold; font-size: 14px;"><%= mortgage.amount %></div>
+                                            <div style="margin-top: 2px; font-size: 14px;"><%= mortgage.client %></div>
+                                        </td>
+                                        <td style="text-align: right; vertical-align: top; font-size: 10px;">
+                                            <a href="<%= mortgage.crmLink %>" style="display: inline-block; background-color: black; color: white; text-decoration: none; padding: 5px; font-weight: bold; border-radius: 10px;">CRM</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <hr style="margin: 5px 0; border: none; border-top: 1px solid #ccc;">
+                                <div style="font-style: italic; font-size: 10px; text-align: right;">Updated <%= mortgage.lastUpdated %> days ago</div>
+                            </div>
+                            <% }); %>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Upcoming Appointments Section -->
+                <table style="width: 100%; margin-top: 20px;">
+                    <tr>
+                        <td colspan="3" style="padding: 10px; background-color: #f0f0f0; text-align: center; font-weight: bold; font-size: 18px;">
+                            UPCOMING APPOINTMENTS
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: top; width: 33%; border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9;">
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td style="text-align: center; font-weight: bold; font-size: 16px;">THIS WEEK</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center; font-size: 14px;"><%= appointments['thisWeek'].count %> Appointments</td>
+                                </tr>
+                            </table>
+                            <% appointments['thisWeek'].items.forEach(function(appointment) { %>
+                            <div class="appointment" style="border: 1px solid #ccc; padding: 10px; background-color: #fff; border-radius: 10px; margin-top: 10px;">
+                                <table style="width: 100%; border-spacing: 0;">
+                                    <tr>
+                                        <td style="width: 60px; text-align: center; vertical-align: top;">
+                                            <div style="padding-top: 5px; background-color: black; color: white; width: 40px; height: 35px; text-align: center; line-height: 15px; border-radius: 100px;">
+                                                <div style="font-size: 10px;"><%= appointment.month %></div>
+                                                <div style="font-size: 12px; font-weight: bold;"><%= appointment.day %></div>
+                                            </div>
+                                        </td>
+                                        <td style="padding-left: 10px; vertical-align: top;">
+                                            <div style="font-weight: bold; font-size: 14px;"><%= appointment.title %></div>
+                                            <div style="margin-top: 2px; font-size: 14px;"><%= appointment.client %></div>
+                                            <div style="margin-top: 2px; font-size: 12px;"><%= appointment.date %> - <%= appointment.time %></div>
+                                        </td>
+                                        <td style="text-align: right; vertical-align: top; font-size: 10px;">
+                                            <a href="<%= appointment.crmLink %>" style="display: inline-block; background-color: black; color: white; text-decoration: none; padding: 5px; font-weight: bold; border-radius: 10px;">CRM</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <hr style="margin: 5px 0; border: none; border-top: 1px solid #ccc;">
+                                <div style="font-style: italic; font-size: 10px; text-align: right;">Updated <%= appointment.lastUpdated %> days ago</div>
+                            </div>
+                            <% }); %>
+                        </td>
+                        <!-- Repeat similar structure for other columns -->
+                        <td style="vertical-align: top; width: 33%; border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9;">
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td style="text-align: center; font-weight: bold; font-size: 16px;">NEXT WEEK</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center; font-size: 14px;"><%= appointments['nextWeek'].count %> Appointments</td>
+                                </tr>
+                            </table>
+                            <% appointments['nextWeek'].items.forEach(function(appointment) { %>
+                            <div class="appointment" style="border: 1px solid #ccc; padding: 10px; background-color: #fff; border-radius: 10px; margin-top: 10px;">
+                                <table style="width: 100%; border-spacing: 0;">
+                                    <tr>
+                                        <td style="width: 60px; text-align: center; vertical-align: top;">
+                                            <div style="padding-top: 5px; background-color: black; color: white; width: 40px; height: 35px; text-align: center; line-height: 15px; border-radius: 100px;">
+                                                <div style="font-size: 10px;"><%= appointment.month %></div>
+                                                <div style="font-size: 12px; font-weight: bold;"><%= appointment.day %></div>
+                                            </div>
+                                        </td>
+                                        <td style="padding-left: 10px; vertical-align: top;">
+                                            <div style="font-weight: bold; font-size: 14px;"><%= appointment.title %></div>
+                                            <div style="margin-top: 2px; font-size: 14px;"><%= appointment.client %></div>
+                                            <div style="margin-top: 2px; font-size: 12px;"><%= appointment.date %> - <%= appointment.time %></div>
+                                        </td>
+                                        <td style="text-align: right; vertical-align: top; font-size: 10px;">
+                                            <a href="<%= appointment.crmLink %>" style="display: inline-block; background-color: black; color: white; text-decoration: none; padding: 5px; font-weight: bold; border-radius: 10px;">CRM</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <hr style="margin: 5px 0; border: none; border-top: 1px solid #ccc;">
+                                <div style="font-style: italic; font-size: 10px; text-align: right;">Updated <%= appointment.lastUpdated %> days ago</div>
+                            </div>
+                            <% }); %>
+                        </td>
+                        <td style="vertical-align: top; width: 33%; border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9;">
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td style="text-align: center; font-weight: bold; font-size: 16px;">THE WEEK AFTER</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center; font-size: 14px;"><%= appointments['weekAfter'].count %> Appointments</td>
+                                </tr>
+                            </table>
+                            <% appointments['weekAfter'].items.forEach(function(appointment) { %>
+                            <div class="appointment" style="border: 1px solid #ccc; padding: 10px; background-color: #fff; border-radius: 10px; margin-top: 10px;">
+                                <table style="width: 100%; border-spacing: 0;">
+                                    <tr>
+                                        <td style="width: 60px; text-align: center; vertical-align: top;">
+                                            <div style="padding-top: 5px; background-color: black; color: white; width: 40px; height: 35px; text-align: center; line-height: 15px; border-radius: 100px;">
+                                                <div style="font-size: 10px;"><%= appointment.month %></div>
+                                                <div style="font-size: 12px; font-weight: bold;"><%= appointment.day %></div>
+                                            </div>
+                                        </td>
+                                        <td style="padding-left: 10px; vertical-align: top;">
+                                            <div style="font-weight: bold; font-size: 12px;"><%= appointment.title %></div>
+                                            <div style="margin-top: 2px; font-size: 12px;"><%= appointment.client %></div>
+                                            <div style="margin-top: 2px; font-size: 10px;"><%= appointment.date %> - <%= appointment.time %></div>
+                                        </td>
+                                        <td style="text-align: right; vertical-align: top; font-size: 10px;">
+                                            <a href="<%= appointment.crmLink %>" style="display: inline-block; background-color: black; color: white; text-decoration: none; padding: 5px; font-weight: bold; border-radius: 10px;">CRM</a>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <hr style="margin: 5px 0; border: none; border-top: 1px solid #ccc;">
+                                <div style="font-style: italic; font-size: 10px; text-align: right;">Updated <%= appointment.lastUpdated %> days ago</div>
+                            </div>
+                            <% }); %>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>
+
