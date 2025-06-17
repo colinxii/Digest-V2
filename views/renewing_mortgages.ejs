@@ -1,0 +1,97 @@
+<!-- Renewing Mortgages Section -->
+<table style="width: 100%; margin-top: 20px;">
+    <tr>
+        <td colspan="4" style="padding: 10px; background-color: #f0f0f0; text-align: center; font-weight: bold; font-size: 18px;">
+            RENEWING MORTGAGES
+        </td>
+    </tr>
+    <tr>
+        <% 
+        const currentDate = new Date('2025-05-05');
+        
+        function getDateRange(startDays, endDays) {
+            const startDate = new Date(currentDate);
+            const endDate = new Date(currentDate);
+            startDate.setDate(currentDate.getDate() + startDays);
+            endDate.setDate(currentDate.getDate() + endDays);
+            return { startDate, endDate };
+        }
+
+        function getMortgagesInRange(startDays, endDays) {
+            const { startDate, endDate } = getDateRange(startDays, endDays);
+            return renewing_mortgages.filter(mortgage => {
+                const mortgageDate = new Date(mortgage.date);
+                return mortgageDate >= startDate && mortgageDate <= endDate;
+            });
+        }
+
+        const ranges = [
+            { id: '30Days', label: '30 DAYS', start: 0, end: 30 },
+            { id: '60Days', label: '60 DAYS', start: 31, end: 60 },
+            { id: '90Days', label: '90 DAYS', start: 61, end: 90 },
+            { id: '180Days', label: '180 DAYS', start: 91, end: 180 }
+        ];
+
+
+  function getRelativeTimeString(dateString) {
+                        const updateDate = new Date(dateString);
+                        const currentDate = new Date('2025-05-05'); // Current date
+                        const diffTime = Math.abs(currentDate - updateDate);
+                        const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                        
+                        if (days === 0) return 'updated today';
+                        if (days === 1) return 'updated yesterday';
+                        if (days < 7) return `updated ${days} days ago`;
+                        if (days < 30) {
+                            const weeks = Math.floor(days / 7);
+                            return `updated ${weeks} ${weeks === 1 ? 'week' : 'weeks'} ago`;
+                        }
+                        if (days < 365) {
+                            const months = Math.floor(days / 30);
+                            return `updated ${months} ${months === 1 ? 'month' : 'months'} ago`;
+                        }
+                        const years = Math.floor(days / 365);
+                        return `updated ${years} ${years === 1 ? 'year' : 'years'} ago`;
+                    }
+
+        %>
+
+        <% ranges.forEach(function(range) { 
+            const mortgagesInRange = getMortgagesInRange(range.start, range.end);
+        %>
+        <td id="<%= range.id %>" style="vertical-align: top; width: 25%; border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9;">
+            <table style="width: 100%;">
+                <tr>
+                    <td style="text-align: center; font-weight: bold; font-size: 16px;"><%= range.label %></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-size: 14px;"><%= mortgagesInRange.length %></td>
+                </tr>
+            </table>
+            <% mortgagesInRange.forEach(function(mortgage) { %>
+            <div style="border: 1px solid #ccc; padding: 10px; background-color: #fff; border-radius: 10px; margin-top: 10px;">
+                <table style="width: 100%; border-spacing: 0;">
+                    <tr class="mortgage-renewal">
+                        <td style="width: 60px; text-align: center; vertical-align: top;">
+                            <div style="padding-top: 5px; background-color: black; color: white; width: 40px; height: 35px; text-align: center; line-height: 15px; border-radius: 100px;">
+                                <div style="font-size: 10px;"><%= new Date(mortgage.date).toLocaleString('en-US', { month: 'short' }).toUpperCase() %></div>
+                                <div style="font-size: 12px; font-weight: bold;"><%= new Date(mortgage.date).getDate() %></div>
+                            </div>
+                        </td>
+                        <td style="padding-left: 10px; vertical-align: top;">
+                            <div style="font-weight: bold; font-size: 14px;">$<%= mortgage.amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) %></div>
+                            <div style="margin-top: 2px; font-size: 14px;"><%= mortgage.members %></div>
+                        </td>
+                        <td style="text-align: right; vertical-align: top; font-size: 10px;">
+                            <a href="<%= mortgage.crm_link %>" style="display: inline-block; background-color: black; color: white; text-decoration: none; padding: 5px; font-weight: bold; border-radius: 10px;">CRM</a>
+                        </td>
+                    </tr>
+                </table>
+                <hr style="margin: 5px 0; border: none; border-top: 1px solid #ccc;">
+                <div style="font-style: italic; font-size: 10px; text-align: right;"><%= getRelativeTimeString(mortgage.last_update) %></div>
+            </div>
+            <% }); %>
+        </td>
+        <% }); %>
+    </tr>
+</table>

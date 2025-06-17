@@ -1,0 +1,101 @@
+<!-- Upcoming Appointments Section -->
+<table style="width: 100%; margin-top: 20px;">
+    <tr>
+        <td colspan="3" style="padding: 10px; background-color: #f0f0f0; text-align: center; font-weight: bold; font-size: 18px; margin-bottom: 30px;">
+            UPCOMING APPOINTMENTS
+        </td>
+    </tr>
+    <tr>
+        <% 
+        const currentDate = new Date();
+        
+        // Function to get week dates
+        function getWeekDates(weeksFromNow) {
+            const date = new Date(currentDate);
+            date.setDate(date.getDate() + (weeksFromNow * 7));
+            const startOfWeek = new Date(date);
+            startOfWeek.setDate(date.getDate() - date.getDay()); // Set to Sunday
+            const endOfWeek = new Date(startOfWeek);
+            endOfWeek.setDate(startOfWeek.getDate() + 6); // Set to Saturday
+            return { start: startOfWeek, end: endOfWeek };
+        }
+
+        // Get appointments for a specific week
+        function getAppointmentsForWeek(weekDates) {
+            return appointments.filter(appointment => {
+                const appointmentDate = new Date(appointment.date);
+                return appointmentDate >= weekDates.start && appointmentDate <= weekDates.end;
+            });
+        }
+
+        const weeks = [
+            { title: "THIS WEEK", dates: getWeekDates(0) },
+            { title: "NEXT WEEK", dates: getWeekDates(1) },
+            { title: "IN TWO WEEKS", dates: getWeekDates(2) }
+        ];
+        %>
+
+        <% weeks.forEach(function(week) { 
+            const weekAppointments = getAppointmentsForWeek(week.dates);
+        %>
+        <td class="week" style="vertical-align: top; width: 33%; border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9;">
+            <table style="width: 100%;">
+                <tr>
+                    <td style="text-align: center; font-weight: bold; font-size: 16px;"><%= week.title %></td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; font-size: 14px;"><%= weekAppointments.length %> Appointments</td>
+                </tr>
+            </table>
+            <% weekAppointments.forEach(function(appointment) { %>
+            <div class="appointment" style="border: 1px solid #ccc; padding: 10px; background-color: #fff; border-radius: 10px; margin-top: 10px;">
+                <table style="width: 100%; border-spacing: 0;">
+                    <tr>
+                        <td style="width: 60px; text-align: center; vertical-align: top;">
+                            <div style="padding-top: 5px; background-color: black; color: white; width: 40px; height: 35px; text-align: center; line-height: 15px; border-radius: 100px;">
+                                <div id="month" style="font-size: 10px;"><%= new Date(appointment.date).toLocaleString('en-US', { month: 'short' }).toUpperCase() %></div>
+                                <div style="font-size: 12px; font-weight: bold;"><%= new Date(appointment.date).getDate() %></div>
+                            </div>
+                        </td>
+                        <td style="padding-left: 10px; vertical-align: top;">
+                            <div style="font-weight: bold; font-size: 14px;"><%= appointment.service %></div>
+                            <div style="margin-top: 2px; font-size: 14px;"><%= appointment.members %></div>
+                            <div style="margin-top: 2px; font-size: 12px;"><%= new Date(appointment.date).toLocaleString('en-US', { weekday: 'short' }).toUpperCase() %> - <%= new Date(appointment.date).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %></div>
+                        </td>
+                        <td style="text-align: right; vertical-align: top; font-size: 10px;">
+                            <a href="www.google.ca" style="display: inline-block; background-color: black; color: white; text-decoration: none; padding: 5px; font-weight: bold; border-radius: 10px;">CRM</a>
+                        </td>
+                    </tr>
+                </table>
+                <hr style="margin: 5px 0; border: none; border-top: 1px solid #ccc;">
+                <div style="font-style: italic; font-size: 10px; text-align: right;">
+                    <% 
+                    function getRelativeTimeString(dateString) {
+                        const updateDate = new Date(dateString);
+                        const currentDate = new Date();
+                        const diffTime = Math.abs(currentDate - updateDate);
+                        const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+                        
+                        if (days === 0) return 'updated today';
+                        if (days === 1) return 'updated yesterday';
+                        if (days < 7) return `updated ${days} days ago`;
+                        if (days < 30) {
+                            const weeks = Math.floor(days / 7);
+                            return `updated ${weeks} ${weeks === 1 ? 'week' : 'weeks'} ago`;
+                        }
+                        if (days < 365) {
+                            const months = Math.floor(days / 30);
+                            return `updated ${months} ${months === 1 ? 'month' : 'months'} ago`;
+                        }
+                        const years = Math.floor(days / 365);
+                        return `updated ${years} ${years === 1 ? 'year' : 'years'} ago`;
+                    }
+                    %>
+                    <%= getRelativeTimeString(appointment.last_update) %>
+                </div>
+            </div>
+            <% }); %>
+        </td>
+        <% }); %>
+    </tr>
+</table>

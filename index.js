@@ -1,19 +1,23 @@
 require('dotenv').config();
 const express = require('express');
+const path = require('path');
+const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Set EJS as the view engine
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname));
 
 // Middleware
 app.use(express.json());
 
 // Routes
 app.get('/', (req, res) => {
-  res.json({ 
-    status: 'API running', 
-    version: '1.0.0',
-    description: 'CRM Digest API'
-  });
+  const rawData = fs.readFileSync(path.join(__dirname, 'test-digest-payload.json'));
+  const digestData = JSON.parse(rawData);
+  res.render('views/advisordigest', digestData);
 });
 
 app.get('/health', (req, res) => {

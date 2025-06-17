@@ -1,0 +1,212 @@
+<%
+// Configuration
+const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+// Create a map for quick lookup of appointment counts by date
+const appointmentMap = {};
+appointmentData.forEach(item => {
+const dateKey = `${item.Year}-${item.Month}-${item.Day}`;
+  appointmentMap[dateKey] = item.Count;
+});
+
+// Calculate statistics
+let totalAppointments = 0;
+let maxCount = 0;
+appointmentData.forEach(item => {
+  if (item.Count > maxCount) maxCount = item.Count;
+  totalAppointments += item.Count;
+});
+
+// Define color thresholds with fixed ranges
+const colorThresholds = [
+  { max: 0, color: "#ECECEC", label: "0" },
+  { max: 1, color: "#C6E48B", label: "1" },
+  { max: 2, color: "#7BC96F", label: "2" },
+  { max: 3, color: "#239A3B", label: "3" },
+  { max: Infinity, color: "#196127", label: "4+" }
+];
+
+// Helper function to get color based on count
+const getColorForCount = (count) => {
+  if (!count) return colorThresholds[0].color;
+  for (let i = 1; i < colorThresholds.length; i++) {
+    if (count <= colorThresholds[i].max) {
+      return colorThresholds[i].color;
+    }
+  }
+  return colorThresholds[colorThresholds.length - 1].color;
+};
+
+// Calculate date ranges
+const today = new Date();
+const endDate = new Date(today);
+const startDate = new Date(today);
+startDate.setDate(today.getDate() - 364);
+
+// Adjust to start of week
+const dayOfWeek = startDate.getDay();
+const adjustedStartDay = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+startDate.setDate(startDate.getDate() - adjustedStartDay);
+
+// Calculate weeks needed
+const totalDays = Math.ceil((endDate - startDate) / (24 * 60 * 60 * 1000)) + adjustedStartDay;
+const numWeeks = Math.ceil(totalDays / 7);
+
+// Prepare weeks data
+const weeksData = [];
+const daysWithAppointments = Array(7).fill(false);
+
+// Generate weeks data
+for (let weekIndex = 0; weekIndex < numWeeks; weekIndex++) {
+  const weekData = { days: [], hasMonth: false, monthName: "" };
+  
+  for (let dayIndex = 0; dayIndex < 7; dayIndex++) {
+    const currentDate = new Date(startDate);
+    currentDate.setDate(startDate.getDate() + (weekIndex * 7) + dayIndex);
+    
+    if (currentDate.getDate() === 1) {
+      weekData.hasMonth = true;
+      weekData.monthName = monthNames[currentDate.getMonth()];
+    }
+    
+    const isWithinRange = currentDate >= startDate && currentDate <= endDate;
+    
+    if (isWithinRange) {
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth() + 1;
+      const day = currentDate.getDate();
+      const dateKey = `${year}-${month}-${day}`;
+      const count = appointmentMap[dateKey] || 0;
+      
+      if (count > 0) daysWithAppointments[dayIndex] = true;
+      
+      weekData.days.push({
+        date: currentDate,
+        day: day,
+        month: month,
+        year: year,
+        count: count,
+        color: getColorForCount(count),
+        isWithinRange: true
+      });
+    } else {
+      weekData.days.push({
+        isWithinRange: false,
+        color: "#FFFFFF"
+      });
+    }
+  }
+  weeksData.push(weekData);
+}
+
+// Get active days
+const activeDaysIndices = daysWithAppointments
+  .map((hasAppointments, index) => hasAppointments ? index : -1)
+  .filter(index => index !== -1);
+const activeDays = activeDaysIndices.map(index => daysOfWeek[index]);
+%>
+
+<div style="padding: 10px; background-color: white; text-align: center; font-weight: bold; font-size: 18px;">
+  <h3 style="margin-bottom: 5px;">Appointment Activity (Last 365 Days)</h3>
+  
+  <div style="margin-bottom: 15px;">
+    <table cellpadding="3" cellspacing="1" border="0" style="border-collapse: separate;">
+      <tr>
+        <td style="font-weight: bold; padding-right: 10px;">Total Appointments:</td>
+        <td><%= totalAppointments %></td>
+      </tr>
+    </table>
+  </div> 
+  
+  <% if (activeDays.length === 0) { %>
+    <div>No appointments found in the specified date range.</div>
+  <% } else { %>
+    <table cellpadding="0" cellspacing="2" border="0" style="table-layout: fixed; border-collapse: separate; width:100%">
+      <!-- Month labels -->
+      <tr style="height: 20px;">
+        <td style="width: 30px;"></td>
+        <% 
+        // Get all visible cells in chronological order
+        const visibleDays = [];
+        weeksData.forEach(week => {
+          week.days.forEach((day, dayIndex) => {
+            if (day.isWithinRange && daysWithAppointments[dayIndex]) {
+              visibleDays.push({...day, weekIndex: week});
+            }
+          });
+        });
+
+        // Calculate total columns
+        const totalCols = weeksData.length * 4;
+
+        // Calculate month spans based on weeks
+        let monthSpans = [];
+        let currentMonth = null;
+        let startWeek = 0;
+
+        weeksData.forEach((week, weekIndex) => {
+          week.days.forEach(day => {
+            if (day.isWithinRange) {
+              if (day.date.getDate() === 1 || currentMonth === null) {
+                if (currentMonth !== null) {
+                  monthSpans.push({
+                    name: monthNames[currentMonth],
+                    startCol: startWeek * 4,
+                    colSpan: (weekIndex - startWeek) * 4
+                  });
+                }
+                currentMonth = day.date.getMonth();
+                startWeek = weekIndex;
+              }
+            }
+          });
+        });
+
+        // Add the last month
+        if (currentMonth !== null) {
+          monthSpans.push({
+            name: monthNames[currentMonth],
+            startCol: startWeek * 4,
+            colSpan: (weeksData.length - startWeek) * 4
+          });
+        }
+        
+        // Render month labels
+        monthSpans.forEach(month => { %>
+          <td colspan="<%= month.colSpan %>" style="text-align: left; font-size: 14px; padding-left: 5px;"><%= month.name %></td>
+        <% }); %>
+      </tr>
+      
+      <!-- Days and cells -->
+      <% for (let i = 0; i < activeDaysIndices.length; i++) {
+        const dayIndex = activeDaysIndices[i]; %>
+        <tr style="height:20px;">
+          <td style="text-align: right; padding-right: 5px; font-size: 12px;" colspan="1"><%= daysOfWeek[dayIndex] %></td>
+          <% for (let j = 0; j < weeksData.length; j++) {
+            const day = weeksData[j].days[dayIndex];
+            if (day.isWithinRange) { %>
+              <td title="<%= monthNames[day.month-1] %> <%= day.day %>, <%= day.year %>: <%= day.count %> appointment<%= day.count !== 1 ? 's' : '' %>" colspan="4"
+                  style="background-color: <%= day.color %>; padding: 0; margin: 0;"></td>
+            <% } else { %>
+              <td style="min-height: 11px; background-color: <%= day.color %>; padding: 0; margin: 0;" colspan="4"></td>
+            <% }
+          } %>
+        </tr>
+      <% } %>
+    </table>
+    
+    <!-- Color legend -->
+    <div style="margin-top: 15px;">
+      <table cellpadding="3" cellspacing="1" border="0">
+        <tr>
+          <td style="font-size: 11px;">Less (<%= colorThresholds[0].label %>)</td>
+          <% colorThresholds.forEach(threshold => { %>
+            <td style="width: 11px; height: 11px; background-color: <%= threshold.color %>;"></td>
+          <% }); %>
+          <td style="font-size: 11px;">More (<%= colorThresholds[4].label %>)</td>
+        </tr>
+      </table>
+    </div>
+  <% } %>
+</div>
