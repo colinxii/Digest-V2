@@ -15,8 +15,14 @@ app.use(express.json());
 
 // Routes
 app.get('/', (req, res) => {
-  const rawData = fs.readFileSync(path.join(__dirname, 'test-digest-payload.json'));
-  const digestData = JSON.parse(rawData);
+  res.status(200).send('CRM Digest API is running! Visit /weekly-advisor-digest/test to see a sample digest.');
+});
+
+app.get('/weekly-advisor-digest/test', (req, res) => {
+  var rawData = fs.readFileSync(path.join(__dirname, 'test-digest-payload.json'));
+  var digestData = JSON.parse(rawData);
+  digestData.today = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+  console.log('Digest Data today:', digestData.today);
   res.render('views/advisordigest', digestData);
 });
 

@@ -2,31 +2,44 @@
 <table style="width: 100%; border-bottom: 1px solid black; padding-bottom: 10px;">
     <tr>
         <td style="text-align: left;">
-            <p id='name' style="margin: 0; font-weight: bold;"><%= recipient.name.toUpperCase() %></p>
-            <p id='title' style="margin: 0;"><%= recipient.title.toUpperCase() %></p>
-            <p id='digest-title' style="margin: 0;">WEEKLY ADVISOR DIGEST</p>
+            <p id="name" style="margin: 0; font-weight: bold;">
+                <%= recipient.name.toUpperCase() %>
+            </p>
+            <p id="title" style="margin: 0;">
+                <%= recipient.title.toUpperCase() %>
+            </p>
+            <p id="digest-title" style="margin: 0;">
+                WEEKLY ADVISOR DIGEST
+            </p>
+            <p id="current-date" style="margin: 0; font-size: 0.9em;"></p>
         </td>
         <td id="calendar-week" style="text-align: right;">
             <table style="border-collapse: collapse; float: right;">
                 <tr>
                     <% 
-                    const today = new Date();
+                    // Get current time in PST
                     const monday = new Date(today);
                     monday.setDate(today.getDate() - today.getDay() + 1); // Set to Monday
                     
-                    for(let i = 0; i < 7; i++) {
+                    for (let i = 0; i < 7; i++) {
                         const currentDate = new Date(monday);
                         currentDate.setDate(monday.getDate() + i);
+                        
                         const isToday = currentDate.getDate() === today.getDate() && 
                                       currentDate.getMonth() === today.getMonth() && 
                                       currentDate.getFullYear() === today.getFullYear();
+                                      
                         const dayName = currentDate.toLocaleString('en-US', { weekday: 'short' });
                         const dayNumber = currentDate.getDate();
                     %>
-                    <td style="width:40px; padding: 0 5px; <%= i < 6? 'border-right: 1px solid black;' : '' %> text-align: center;">
-                        <div style="<%= isToday ? 'background-color: black;' : '' %> padding: 5px 5px 5px 5px; border-radius: 25px;">
-                            <div style="padding: 0 5px; text-align: center; <%= isToday ? 'color: white;' : '' %>"><%= dayName %></div>
-                            <div style="padding: 0 5px; text-align: center; <%= isToday ? 'color: white;' : '' %> font-weight: bold;"><%= dayNumber %></div>
+                    <td style="width: 40px; padding: 0 5px; <%= i < 6 ? 'border-right: 1px solid black;' : '' %> text-align: center;">
+                        <div style="<%= isToday ? 'background-color: black;' : '' %> padding: 5px; border-radius: 25px;">
+                            <div style="padding: 0 5px; text-align: center; <%= isToday ? 'color: white;' : '' %>">
+                                <%= dayName %>
+                            </div>
+                            <div style="padding: 0 5px; text-align: center; <%= isToday ? 'color: white;' : '' %> font-weight: bold;">
+                                <%= dayNumber %>
+                            </div>
                         </div>
                     </td>
                     <% } %>

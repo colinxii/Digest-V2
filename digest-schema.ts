@@ -1,3 +1,5 @@
+//Expected payload for the Advisor Digest email
+
 export interface AdvisorDigestPayload {
     recipient: {
         name: string;
