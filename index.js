@@ -23,7 +23,11 @@ app.get('/', (req, res) => {
 app.post('/weekly-advisor-digest', (req, res) => {
   const rawData = req.body;
   const digestData = JSON.parse(rawData);
-  res.render('views/advisordigest', digestData);
+  //res.render('views/advisordigest', digestData);
+  res.status(200).json({
+    message: 'Digest data received successfully',
+    data: digestData
+  });
 });
 
 app.get('/health', (req, res) => {
