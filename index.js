@@ -21,10 +21,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/weekly-advisor-digest', (req, res) => {
-  const rawData = req.body;
-  const digestData = JSON.parse(rawData);
-  res.render('views/advisordigest', digestData);
-
+  res.render('views/advisordigest', req.body);
 });
 
 app.get('/health', (req, res) => {
