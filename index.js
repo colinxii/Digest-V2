@@ -30,7 +30,12 @@ app.use((err, req, res, next) => {
   res.status(500).send('Internal Server Error');
 });
 
-// Start server
-app.listen(PORT, () => {
-  console.log(`CRM Digest API running on port ${PORT}`);
-});
+// Export the app for testing
+module.exports = app;
+
+// Only start the server if running directly (not when imported for tests)
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`CRM Digest API running on port ${PORT}`);
+  });
+}
