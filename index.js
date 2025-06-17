@@ -26,7 +26,7 @@ app.post('/weekly-advisor-digest', (req, res) => {
   //res.render('views/advisordigest', digestData);
   res.status(200).json({
     message: 'Digest data received successfully',
-    data: 'meep'
+    data: req.body
   });
 });
 
