@@ -1,0 +1,19 @@
+# Dependency directories
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Coverage reports
+coverage/
+
+# macOS files
+.DS_Store
+
+# IDE files
+.vscode/

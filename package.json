@@ -1,0 +1,28 @@
+{
+  "name": "crm-digest",
+  "version": "0.0.0",
+  "description": "Api to format email content for dynamics crm digest. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/colinxii/Digest-V2.git"
+  },
+  "author": "Colin Barr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/colinxii/Digest-V2/issues"
+  },
+  "homepage": "https://github.com/colinxii/Digest-V2#readme"
+}
