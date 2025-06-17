@@ -27,6 +27,7 @@ app.get('/weekly-advisor-digest/test', (req, res) => {
 });
 
 app.post('/weekly-advisor-digest', (req, res) => {
+  req.body.today = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
   res.render('views/advisordigest', req.body);
 });
 
