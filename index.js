@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const { getRelativeTimeString } = require('./utils/dateUtils');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -23,6 +24,7 @@ app.get('/weekly-advisor-digest/test', async (req, res, next) => {
     const rawData = await fs.promises.readFile(path.join(__dirname, 'test-digest-payload.json'));
     const digestData = JSON.parse(rawData);
     digestData.today = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+    digestData.getRelativeTimeString = getRelativeTimeString;
     console.log('Digest Data today:', digestData.today);
     res.render('views/advisordigest', digestData);
   } catch (err) {
@@ -31,8 +33,10 @@ app.get('/weekly-advisor-digest/test', async (req, res, next) => {
 });
 
 app.post('/weekly-advisor-digest', (req, res) => {
-  req.body.today = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
-  res.render('views/advisordigest', req.body);
+  var digestData = req.body;
+  digestData.today =  new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+  digestData.getRelativeTimeString = getRelativeTimeString;
+  res.render('views/advisordigest', digestData);
 });
 
 app.get('/health', (req, res) => {
