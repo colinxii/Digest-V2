@@ -71,4 +71,3 @@ jobs:
           app-name: 'crm-digest'
           slot-name: 'Production'
           package: .
-          

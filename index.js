@@ -20,6 +20,12 @@ app.get('/', (req, res) => {
   res.render('views/advisordigest', digestData);
 });
 
+app.post('/weekly-advisor-digest', (req, res) => {
+  const rawData = req.body;
+  const digestData = JSON.parse(rawData);
+  res.render('views/advisordigest', digestData);
+});
+
 app.get('/health', (req, res) => {
   res.status(200).send('OK');
 });
