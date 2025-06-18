@@ -6,7 +6,11 @@
   "scripts": {
     "test": "jest",
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "build": "npm ci && npm test && echo 'Build completed successfully'",
+    "build:prod": "npm ci --only=production",
+    "prebuild": "echo 'Starting build process...'",
+    "postbuild": "echo 'Build process completed'"
   },
   "dependencies": {
     "dotenv": "^16.3.1",
@@ -27,5 +31,9 @@
   "bugs": {
     "url": "https://github.com/colinxii/Digest-V2/issues"
   },
-  "homepage": "https://github.com/colinxii/Digest-V2#readme"
+  "homepage": "https://github.com/colinxii/Digest-V2#readme",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  }
 }
