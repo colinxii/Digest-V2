@@ -35,8 +35,12 @@
         ];
         %>
 
-        <% weeks.forEach(function(week) { 
+        <% weeks.forEach(function(week, weekIndex) { 
             const weekAppointments = getAppointmentsForWeek(week.dates);
+            // Define targets for each week
+            const weekTargets = [10, 5, 2]; // THIS WEEK: 10, NEXT WEEK: 5, IN TWO WEEKS: 2
+            const target = weekTargets[weekIndex];
+            const filledSegments = Math.min(weekAppointments.length, target);
         %>
         <td class="week" style="vertical-align: top; width: 33%; border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9;">
             <table style="width: 100%;">
@@ -45,6 +49,20 @@
                 </tr>
                 <tr>
                     <td style="text-align: center; font-size: 14px;"><%= weekAppointments.length %> Appointments</td>
+                </tr>
+                <tr>
+                    <td style="text-align: center; padding-top: 5px; padding-bottom: 10px;">
+                        <div style="width: 100%; text-align: center; white-space: nowrap;">
+                            <% 
+                            // Calculate segment width as percentage to fill container width
+                            // Use 90% total width to account for margins and prevent overflow
+                            const segmentWidth = (90 / target).toFixed(2);
+                            for(let i = 0; i < target; i++) { 
+                            %>
+                                <span style="display: inline-block; width: <%= segmentWidth %>%; height: 6px; margin: 0; border: 1px solid #000; background-color: <%= i < filledSegments ? '#000' : '#fff' %>; box-sizing: border-box; vertical-align: top;"></span>
+                            <% } %>
+                        </div>
+                    </td>
                 </tr>
             </table>
             <% weekAppointments.forEach(function(appointment) { %>
