@@ -22,16 +22,6 @@
     "nodemon": "^3.0.3",
     "supertest": "^7.1.1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/colinxii/Digest-V2.git"
-  },
-  "author": "Colin Barr",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/colinxii/Digest-V2/issues"
-  },
-  "homepage": "https://github.com/colinxii/Digest-V2#readme",
   "engines": {
     "node": ">=18.0.0",
     "npm": ">=8.0.0"
