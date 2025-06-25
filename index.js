@@ -18,7 +18,6 @@ app.use(express.json());
 app.get('/', (req, res) => {
   res.status(200).send('CRM Digest API is running! Visit /weekly-advisor-digest/test to see a sample digest.');
 });
-
 app.get('/weekly-advisor-digest/test', async (req, res, next) => {
   try {
     const rawData = await fs.promises.readFile(path.join(__dirname, 'test-digest-payload.json'));
@@ -26,7 +25,14 @@ app.get('/weekly-advisor-digest/test', async (req, res, next) => {
     digestData.today = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
     digestData.getRelativeTimeString = getRelativeTimeString;
     console.log('Digest Data today:', digestData.today);
-    res.render('views/advisordigest', digestData);
+    res.render('views/advisordigest', digestData, (err, html) => {
+      if (err) {
+        console.error('Error rendering EJS template:', err);
+        return res.status(500).json({ error: 'Error rendering template, see Colin or line 32 of index.js.' });
+      }
+
+      res.json({success: true, secretMessage:'Hello, Sam!', digestHtml: html});
+    }); 
   } catch (err) {
     next(err);
   }
