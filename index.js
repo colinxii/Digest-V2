@@ -14,11 +14,47 @@ app.set('views', path.join(__dirname));
 // Middleware
 app.use(express.json());
 
+const checkJwt = (req, res, next) => {
+  const authHeader = req.headers.authorization || '';
+  const token = authHeader.replace('Bearer ', '').trim();
+
+  if (!token) {
+    return res.status(401).json({ error: 'Unauthorized: No token provided' });
+  }
+
+  const client = jwksRsa({
+    jwksUri: `https://login.microsoftonline.com/2aef1c0c-7c03-4f6d-9a89-09e412b9849c/discovery/v2.0/keys`
+  });
+
+  const getKey = (header, callback) => {
+    client.getSigningKey(header.kid, (err, key) => {
+      if (err) {
+        return callback(err);
+      }
+      const signingKey = key.getPublicKey();
+      callback(null, signingKey);
+    });
+  };
+
+  jwt.verify(token, getKey, {
+    audience: `api://81cd1e78-39c4-435d-aaa7-4a506182108f`,
+    issuer: `https://login.microsoftonline.com/2aef1c0c-7c03-4f6d-9a89-09e412b9849c/v2.0`,
+    algorithms: ['RS256']
+  }, (err, decoded) => {
+    if (err) {
+      console.error('JWT verification error:', err);
+      return res.status(403).json({ error: 'Forbidden: Invalid token' });
+    }
+    req.user = decoded;
+    next();
+  });
+};
+
 // Routes
 app.get('/', (req, res) => {
   res.status(200).send('CRM Digest API is running! Visit /weekly-advisor-digest/test to see a sample digest.');
 });
-app.get('/weekly-advisor-digest/test', async (req, res, next) => {
+app.get('/weekly-advisor-digest/test', checkJwt, async (req, res, next) => {
   try {
     const rawData = await fs.promises.readFile(path.join(__dirname, 'test-digest-payload.json'));
     const digestData = JSON.parse(rawData);
@@ -31,8 +67,8 @@ app.get('/weekly-advisor-digest/test', async (req, res, next) => {
         return res.status(500).json({ error: 'Error rendering template, see Colin or line 32 of index.js.' });
       }
 
-      res.json({success: true, secretMessage:'Hello, Sam!', digestHtml: html});
-    }); 
+      res.json({ success: true, secretMessage: 'Hello, Sam!', digestHtml: html });
+    });
   } catch (err) {
     next(err);
   }
@@ -40,7 +76,7 @@ app.get('/weekly-advisor-digest/test', async (req, res, next) => {
 
 app.post('/weekly-advisor-digest', (req, res) => {
   var digestData = req.body;
-  digestData.today =  new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
+  digestData.today = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
   digestData.getRelativeTimeString = getRelativeTimeString;
   res.render('views/advisordigest', digestData);
 });
