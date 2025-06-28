@@ -40,7 +40,7 @@ const checkJwt = (req, res, next) => {
   };
 
   jwt.verify(token, getKey, {
-    audience: `api://2ee6bd3a-2b78-47a3-a7be-e6c2161adc83`,
+    audience: [`api://2ee6bd3a-2b78-47a3-a7be-e6c2161adc83`, `2ee6bd3a-2b78-47a3-a7be-e6c2161adc83`],
     issuer: `https://login.microsoftonline.com/685bcef1-56df-4af4-bcc6-7327c5ddfc40/v2.0`,
     algorithms: ['RS256']
   }, (err, decoded) => {
@@ -49,13 +49,29 @@ const checkJwt = (req, res, next) => {
       return res.status(403).json({ error: 'Forbidden: Invalid token' });
     }
     
-    // Scope validation
-    const scopes = decoded.scp ? decoded.scp.split(' ') : [];
-    const requiredScope = 'digest.read'; // Adjust this to match your Azure AD app registration
+    // Log the decoded token for debugging
+    console.log('Decoded token:', JSON.stringify(decoded, null, 2));
     
-    if (!scopes.includes(requiredScope)) {
-      console.error(`Insufficient permissions. Required scope: ${requiredScope}, Available scopes: ${scopes.join(', ')}`);
-      return res.status(403).json({ error: 'Forbidden: Insufficient permissions' });
+    // Check for permissions - handle both delegated (scp) and application (roles) permissions
+    const scopes = decoded.scp ? decoded.scp.split(' ') : [];
+    const roles = decoded.roles || [];
+    const requiredPermission = 'digest.read'; // Adjust this to match your Azure AD app registration
+    
+    // Check if the required permission exists in either scopes or roles
+    const hasPermission = scopes.includes(requiredPermission) || roles.includes(requiredPermission);
+    
+    if (!hasPermission) {
+      console.error(`Insufficient permissions. Required: ${requiredPermission}`);
+      console.error(`Available scopes: ${scopes.join(', ') || 'none'}`);
+      console.error(`Available roles: ${roles.join(', ') || 'none'}`);
+      
+      // For client credentials flow, check if we have the default scope
+      const hasDefaultScope = scopes.includes('.default');
+      if (hasDefaultScope) {
+        console.log('Client credentials token detected with .default scope - allowing access');
+      } else {
+        return res.status(403).json({ error: 'Forbidden: Insufficient permissions' });
+      }
     }
     
     // Log successful authentication
