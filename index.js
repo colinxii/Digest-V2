@@ -2,6 +2,9 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
+const jwt = require('jsonwebtoken');
+const jwksRsa = require('jwks-rsa');
+
 const { getRelativeTimeString } = require('./utils/dateUtils');
 
 const app = express();
@@ -54,6 +57,7 @@ const checkJwt = (req, res, next) => {
 app.get('/', (req, res) => {
   res.status(200).send('CRM Digest API is running! Visit /weekly-advisor-digest/test to see a sample digest.');
 });
+
 app.get('/weekly-advisor-digest/test', checkJwt, async (req, res, next) => {
   try {
     const rawData = await fs.promises.readFile(path.join(__dirname, 'test-digest-payload.json'));
