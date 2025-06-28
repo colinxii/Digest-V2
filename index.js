@@ -26,7 +26,7 @@ const checkJwt = (req, res, next) => {
   }
 
   const client = jwksRsa({
-    jwksUri: `https://login.microsoftonline.com/2aef1c0c-7c03-4f6d-9a89-09e412b9849c/discovery/v2.0/keys`
+    jwksUri: `https://login.microsoftonline.com/685bcef1-56df-4af4-bcc6-7327c5ddfc40/discovery/v2.0/keys`
   });
 
   const getKey = (header, callback) => {
@@ -40,8 +40,8 @@ const checkJwt = (req, res, next) => {
   };
 
   jwt.verify(token, getKey, {
-    audience: `api://81cd1e78-39c4-435d-aaa7-4a506182108f`,
-    issuer: `https://login.microsoftonline.com/2aef1c0c-7c03-4f6d-9a89-09e412b9849c/v2.0`,
+    audience: `api://2ee6bd3a-2b78-47a3-a7be-e6c2161adc83`,
+    issuer: `https://login.microsoftonline.com/685bcef1-56df-4af4-bcc6-7327c5ddfc40/v2.0`,
     algorithms: ['RS256']
   }, (err, decoded) => {
     if (err) {
