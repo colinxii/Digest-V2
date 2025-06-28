@@ -40,7 +40,7 @@ const checkJwt = (req, res, next) => {
   };
 
   jwt.verify(token, getKey, {
-    audience: [`api://2ee6bd3a-2b78-47a3-a7be-e6c2161adc83`, `2ee6bd3a-2b78-47a3-a7be-e6c2161adc83`],
+    audience: [`api://2ee6bd3a-2b78-47a3-a7be-e6c2161adc83`, `2ee6bd3a-2b78-47a3-a7be-e6c2161adc83`, `api://2ee6bd3a-2b78-47a3-a7be-e6c2161adc83/Read`],
     issuer: `https://login.microsoftonline.com/685bcef1-56df-4af4-bcc6-7327c5ddfc40/v2.0`,
     algorithms: ['RS256']
   }, (err, decoded) => {
