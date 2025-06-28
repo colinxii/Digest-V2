@@ -55,7 +55,7 @@ const checkJwt = (req, res, next) => {
     // Check for permissions - handle both delegated (scp) and application (roles) permissions
     const scopes = decoded.scp ? decoded.scp.split(' ') : [];
     const roles = decoded.roles || [];
-    const requiredPermission = 'Read'; // Adjust this to match your Azure AD app registration
+    const requiredPermission = 'digest.read'; // Adjust this to match your Azure AD app registration
     
     // Check if the required permission exists in either scopes or roles
     const hasPermission = scopes.includes(requiredPermission) || roles.includes(requiredPermission);
