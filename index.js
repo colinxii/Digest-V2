@@ -48,6 +48,36 @@ const checkJwt = (req, res, next) => {
       console.error('JWT verification error:', err);
       return res.status(403).json({ error: 'Forbidden: Invalid token' });
     }
+    
+    // Scope validation
+    const scopes = decoded.scp ? decoded.scp.split(' ') : [];
+    const requiredScope = 'digest.read'; // Adjust this to match your Azure AD app registration
+    
+    if (!scopes.includes(requiredScope)) {
+      console.error(`Insufficient permissions. Required scope: ${requiredScope}, Available scopes: ${scopes.join(', ')}`);
+      return res.status(403).json({ error: 'Forbidden: Insufficient permissions' });
+    }
+    
+    // Log successful authentication
+    const logEntry = {
+      timestamp: new Date().toISOString(),
+      event: 'successful_authentication',
+      user: {
+        oid: decoded.oid || 'unknown',
+        email: decoded.preferred_username || decoded.email || 'unknown',
+        name: decoded.name || 'unknown'
+      },
+      request: {
+        method: req.method,
+        path: req.path,
+        ip: req.ip || req.connection.remoteAddress,
+        userAgent: req.headers['user-agent'] || 'unknown'
+      },
+      scopes: scopes
+    };
+    
+    console.log('Authentication Success:', JSON.stringify(logEntry));
+    
     req.user = decoded;
     next();
   });
