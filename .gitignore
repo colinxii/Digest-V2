@@ -17,3 +17,5 @@ coverage/
 
 # IDE files
 .vscode/
+
+testApi.js
