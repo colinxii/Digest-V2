@@ -1,7 +1,8 @@
 {
     "recipient": {
         "name": "Colin Barr",
-        "title": "Senior Financial Advisor"
+        "title": "Senior Financial Advisor",
+        "tracking_url": "https://example.com/tracking"
     },
     "matured_mortgages": [
         {
