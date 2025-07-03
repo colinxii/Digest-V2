@@ -107,18 +107,161 @@ const activeDaysIndices = daysWithAppointments
 const activeDays = activeDaysIndices.map(index => daysOfWeek[index]);
 %>
 
-<div style="padding: 10px; background-color: white; text-align: center; font-weight: bold; font-size: 18px;">
-  <h3 style="margin-bottom: 5px;">Appointment Activity (Last 365 Days)</h3>
+<!-- HEADER SECTION -->
+<%
+// Calculate appointment statistics for bento boxes
+// Reuse existing 'today' variable declared above
+const bentoCurrentMonth = today.getMonth() + 1;
+const bentoCurrentYear = today.getFullYear();
+
+// Helper function to get quarter from month
+function getQuarter(month) {
+  return Math.ceil(month / 3);
+}
+
+const currentQuarter = getQuarter(bentoCurrentMonth);
+
+// Calculate last month and last quarter
+const lastMonth = bentoCurrentMonth === 1 ? 12 : bentoCurrentMonth - 1;
+const lastMonthYear = bentoCurrentMonth === 1 ? bentoCurrentYear - 1 : bentoCurrentYear;
+const lastQuarter = currentQuarter === 1 ? 4 : currentQuarter - 1;
+const lastQuarterYear = currentQuarter === 1 ? bentoCurrentYear - 1 : bentoCurrentYear;
+
+// Calculate this month's appointments
+let thisMonthAppointments = 0;
+appointmentData.forEach(item => {
+  if (item.Year === bentoCurrentYear && item.Month === bentoCurrentMonth) {
+    thisMonthAppointments += item.Count;
+  }
+});
+
+// Calculate this quarter's appointments
+let thisQuarterAppointments = 0;
+appointmentData.forEach(item => {
+  if (item.Year === bentoCurrentYear && getQuarter(item.Month) === currentQuarter) {
+    thisQuarterAppointments += item.Count;
+  }
+});
+
+// Calculate year-to-date appointments
+let yearToDateAppointments = 0;
+appointmentData.forEach(item => {
+  if (item.Year === bentoCurrentYear) {
+    const itemDate = new Date(item.Year, item.Month - 1, item.Day);
+    if (itemDate <= today) {
+      yearToDateAppointments += item.Count;
+    }
+  }
+});
+
+// Calculate last month's appointments
+let lastMonthAppointments = 0;
+appointmentData.forEach(item => {
+  if (item.Year === lastMonthYear && item.Month === lastMonth) {
+    lastMonthAppointments += item.Count;
+  }
+});
+
+// Calculate last quarter's appointments
+let lastQuarterAppointments = 0;
+appointmentData.forEach(item => {
+  if (item.Year === lastQuarterYear && getQuarter(item.Month) === lastQuarter) {
+    lastQuarterAppointments += item.Count;
+  }
+});
+
+// Format numbers with commas
+function formatNumber(num) {
+  return num.toLocaleString('en-US');
+}
+%>
+
+<!-- Bento Box Header -->
+<table style="width: 100%; margin-bottom: 20px; border-collapse: separate; border-spacing: 0;">
+  <!-- Row 1: Title Header -->
+  <tr>
+    <td colspan="100%" style="padding: 0 0 10px 0;">
+      <div style="border: 1px solid #ccc; background-color: #fff; border-radius: 10px; padding: 15px; text-align: center;">
+        <div style="font-weight: bold; font-size: 18px; color: #333;">APPOINTMENTS</div>
+        <div style="font-size: 12px; color: #666; margin-top: 2px;">(LAST 365 DAYS)</div>
+      </div>
+    </td>
+  </tr>
   
-  <div style="margin-bottom: 15px;">
-    <table cellpadding="3" cellspacing="1" border="0" style="border-collapse: separate;">
-      <tr>
-        <td style="font-weight: bold; padding-right: 10px;">Total Appointments:</td>
-        <td><%= totalAppointments %></td>
-      </tr>
-    </table>
-  </div> 
-  
+  <!-- Row 2: Current Period Metrics -->
+  <tr>
+  <!-- Total Appointments -->
+    <td style="width: 14.28%; padding: 0 1.25% 10px 0;  vertical-align: top;">
+      <div style="border: 1px solid #ccc; background-color: #fff; border-radius: 10px; padding: 10px; text-align: center; height: 30px; width: 100%; display: table;">
+        <div style="display: table-cell; vertical-align: middle;">
+          <div style="font-size: 12px; color: #666; margin-bottom: 2px;">TOTAL</div>
+          <div style="font-weight: bold; font-size: 16px; color: #333;"><%= formatNumber(totalAppointments) %></div>
+        </div>
+      </div>
+    </td>
+    
+    <!-- Year to Date -->
+    <td style="width: 14.28%; padding: 0 1.25% 10px 1.25%; vertical-align: top;">
+      <div style="border: 1px solid #ccc; background-color: #fff; border-radius: 10px; padding: 10px; text-align: center; height: 30px; width: 100%; display: table;">
+        <div style="display: table-cell; vertical-align: middle;">
+          <div style="font-size: 12px; color: #666; margin-bottom: 2px;">YEAR TO DATE</div>
+          <div style="font-weight: bold; font-size: 16px; color: #333;"><%= formatNumber(yearToDateAppointments) %></div>
+        </div>
+      </div>
+    </td>
+    
+    <!-- Last Quarter -->
+    <td style="width: 14.28%; padding: 0 1.25% 10px 1.25%; vertical-align: top;">
+      <div style="border: 1px solid #ccc; background-color: #fff; border-radius: 10px; padding: 10px; text-align: center; height: 30px; width: 100%; display: table;">
+        <div style="display: table-cell; vertical-align: middle;">
+          <div style="font-size: 12px; color: #666; margin-bottom: 2px;">LAST QUARTER</div>
+          <div style="font-weight: bold; font-size: 16px; color: #333;"><%= formatNumber(lastQuarterAppointments) %></div>
+        </div>
+      </div>
+    </td>
+
+    <!-- This Quarter -->
+    <td style="width: 14.28%; padding: 0 1.25% 10px 1.25%; vertical-align: top;">
+      <div style="border: 1px solid #ccc; background-color: #fff; border-radius: 10px; padding: 10px; text-align: center; height: 30px; width: 100%; display: table;">
+        <div style="display: table-cell; vertical-align: middle;">
+          <div style="font-size: 12px; color: #666; margin-bottom: 2px;">THIS QUARTER</div>
+          <div style="font-weight: bold; font-size: 16px; color: #333;"><%= formatNumber(thisQuarterAppointments) %></div>
+        </div>
+      </div>
+    </td>
+
+    <!-- Last Month -->
+    <td style="width: 14.28%; padding: 0 1.25% 10px 1.25%; vertical-align: top;">
+      <div style="border: 1px solid #ccc; background-color: #fff; border-radius: 10px; padding: 10px; text-align: center; height: 30px; width: 100%; display: table;">
+        <div style="display: table-cell; vertical-align: middle;">
+          <div style="font-size: 12px; color: #666; margin-bottom: 2px;">LAST MONTH</div>
+          <div style="font-weight: bold; font-size: 16px; color: #333;"><%= formatNumber(lastMonthAppointments) %></div>
+        </div>
+      </div>
+    </td>
+    
+    <!-- This Month -->
+    <td style="width: 14.28%; padding: 0 1.25% 10px 1.25%; vertical-align: top;">
+      <div style="border: 1px solid #ccc; background-color: #fff; border-radius: 10px; padding: 10px; text-align: center; height: 30px; width: 100%; display: table;">
+        <div style="display: table-cell; vertical-align: middle;">
+          <div style="font-size: 12px; color: #666; margin-bottom: 2px;">THIS MONTH</div>
+          <div style="font-weight: bold; font-size: 16px; color: #333;"><%= formatNumber(thisMonthAppointments) %></div>
+        </div>
+      </div>
+    </td>
+     
+    <!-- Most in One Day -->
+    <td style="width: 14.28%; padding: 0 20px 10px 1.25%; vertical-align: top;">
+      <div style="border: 1px solid #ccc; background-color: #fff; border-radius: 10px; padding: 10px; text-align: center; height: 30px; width: 100%; display: table;">
+        <div style="display: table-cell; vertical-align: middle;">
+          <div style="font-size: 12px; color: #666; margin-bottom: 2px;">MOST IN ONE DAY</div>
+          <div style="font-weight: bold; font-size: 16px; color: #333;"><%= formatNumber(maxCount) %></div>
+        </div>
+      </div>
+    </td>
+  </tr>
+</table>
+
   <% if (activeDays.length === 0) { %>
     <div>No appointments found in the specified date range.</div>
   <% } else { %>
@@ -209,4 +352,3 @@ const activeDays = activeDaysIndices.map(index => daysOfWeek[index]);
       </table>
     </div>
   <% } %>
-</div>
