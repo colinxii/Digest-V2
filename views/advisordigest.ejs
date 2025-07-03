@@ -1,35 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>CRM Digest</title>
-    <style>
+    <!--[if mso]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:AllowPNG/>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+    </xml>
+    <![endif]-->
+    <style type="text/css">
         body {
             margin: 0;
             padding: 0;
             background-color: white;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        table {
+            border-collapse: collapse;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+        td {
+            padding: 0;
+        }
+        img {
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+            -ms-interpolation-mode: bicubic;
+        }
+        p {
+            display: block;
+            margin: 0;
         }
     </style>
+    <!--[if mso]>
+    <style type="text/css">
+        .outlook-fix {
+            width: 100% !important;
+        }
+        table {
+            border-collapse: collapse !important;
+        }
+    </style>
+    <![endif]-->
 </head>
 
-<body>
-    <table
-        style="width: 100%; max-width: 1200px; margin: 0 auto; padding: 20px; font-family: Arial, sans-serif; color: #333333; border-collapse: collapse;">
+<body style="margin: 0; padding: 0; background-color: white;">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="width: 100%; margin: 0; padding: 0;">
         <tr>
-            <td>
-                <%- include('./header') %>
-                <%- include('./matured_mortgages') %>
-                <%- include('./renewing_mortgages') %>
-                <%- include('./heatmap') %>
-                <%- include('./appointments') %>
-               
-                <!-- Footer Section -->
-                <table style="width: 100%; margin-top: 20px;">
+            <td align="center" style="padding: 0;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="1200" style="width: 1200px; max-width: 1200px; margin: 0 auto; padding: 20px; font-family: Arial, sans-serif; color: #333333;">
                     <tr>
-                        <td style="text-align: center; font-size: 12px; color: #999;">
-                           This email is intended solely for internal use within First West Credit Union and its divisions. A forward prevention policy restricts the transmission of this message outside the organization. Any unauthorized forwarding, distribution, or disclosure of this communication to external parties is strictly prohibited. If you have received this email in error, please notify the sender immediately and delete all copies.
+                        <td style="padding: 0;">
+                            <%- include('./header') %>
+                            <%- include('./matured_mortgages') %>
+                            <%- include('./renewing_mortgages') %>
+                            <%- include('./heatmap') %>
+                            <%- include('./appointments') %>
+                           
+                            <!-- Footer Section -->
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="width: 100%; margin-top: 20px;">
+                                <tr>
+                                    <td align="center" style="text-align: center; font-size: 12px; color: #999; padding: 20px;">
+                                       This email is intended solely for internal use within First West Credit Union and its divisions. A forward prevention policy restricts the transmission of this message outside the organization. Any unauthorized forwarding, distribution, or disclosure of this communication to external parties is strictly prohibited. If you have received this email in error, please notify the sender immediately and delete all copies.
+                                    </td>
+                                </tr>
+                            </table>
                         </td>
                     </tr>
                 </table>

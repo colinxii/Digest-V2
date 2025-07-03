@@ -177,178 +177,255 @@ function formatNumber(num) {
 %>
 
 <!-- Bento Box Header -->
-<table style="width: 100%; margin-bottom: 20px; border-collapse: separate; border-spacing: 0;">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="width: 100%; margin-bottom: 20px;">
   <!-- Row 1: Title Header -->
   <tr>
-    <td colspan="100%" style="padding: 0 0 10px 0;">
-      <div style="border: 1px solid #ccc; background-color: #ECECEC; border-radius: 10px; padding: 15px; text-align: center;">
-        <div style="font-weight: bold; font-size: 18px; color: #333;">APPOINTMENTS</div>
-        <div style="font-size: 12px; color: #666; margin-top: 2px;">(LAST 365 DAYS)</div>
+    <td colspan="7" style="padding: 0 0 10px 0;">
+      <div style="border: 1px solid #cccccc; background-color: #ECECEC; border-radius: 10px; padding: 15px; text-align: center;">
+        <!--[if mso]>
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+          <tr>
+            <td bgcolor="#ECECEC" style="border: 1px solid #cccccc; padding: 15px; text-align: center;">
+        <![endif]-->
+        <div style="font-weight: bold; font-size: 18px; color: #333333; line-height: 1.2;">APPOINTMENTS</div>
+        <div style="font-size: 12px; color: #666666; margin-top: 2px; line-height: 1.2;">(LAST 365 DAYS)</div>
+        <!--[if mso]>
+            </td>
+          </tr>
+        </table>
+        <![endif]-->
       </div>
     </td>
   </tr>
   
   <!-- Row 2: Current Period Metrics -->
   <tr>
-  <!-- Total Appointments -->
-    <td style="width: 14.28%; padding: 0 1.25% 10px 0;  vertical-align: top;">
-      <div style="border: 1px solid #ccc; background-color: #fff; border-radius: 10px; padding: 10px; text-align: center; height: 30px; width: 100%; display: table;">
-        <div style="display: table-cell; vertical-align: middle;">
-          <div style="font-size: 12px; color: #666; margin-bottom: 2px;">TOTAL</div>
-          <div style="font-weight: bold; font-size: 16px; color: #333;"><%= formatNumber(totalAppointments) %></div>
-        </div>
+    <!-- Total Appointments -->
+    <td width="14.28%" style="width: 14.28%; padding: 0 5px 10px 0; vertical-align: top;">
+      <div style="border: 1px solid #cccccc; background-color: #ffffff; border-radius: 10px; padding: 10px; text-align: center; min-height: 50px;">
+        <!--[if mso]>
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" height="50">
+          <tr>
+            <td bgcolor="#ffffff" style="border: 1px solid #cccccc; padding: 10px; text-align: center; vertical-align: middle;">
+        <![endif]-->
+        <div style="font-size: 12px; color: #666666; margin-bottom: 2px; line-height: 1.2;">TOTAL</div>
+        <div style="font-weight: bold; font-size: 16px; color: #333333; line-height: 1.2;"><%= formatNumber(totalAppointments) %></div>
+        <!--[if mso]>
+            </td>
+          </tr>
+        </table>
+        <![endif]-->
       </div>
     </td>
     
     <!-- Year to Date -->
-    <td style="width: 14.28%; padding: 0 1.25% 10px 1.25%; vertical-align: top;">
-      <div style="border: 1px solid #ccc; background-color: #fff; border-radius: 10px; padding: 10px; text-align: center; height: 30px; width: 100%; display: table;">
-        <div style="display: table-cell; vertical-align: middle;">
-          <div style="font-size: 12px; color: #666; margin-bottom: 2px;">YEAR TO DATE</div>
-          <div style="font-weight: bold; font-size: 16px; color: #333;"><%= formatNumber(yearToDateAppointments) %></div>
-        </div>
+    <td width="14.28%" style="width: 14.28%; padding: 0 5px 10px 5px; vertical-align: top;">
+      <div style="border: 1px solid #cccccc; background-color: #ffffff; border-radius: 10px; padding: 10px; text-align: center; min-height: 50px;">
+        <!--[if mso]>
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" height="50">
+          <tr>
+            <td bgcolor="#ffffff" style="border: 1px solid #cccccc; padding: 10px; text-align: center; vertical-align: middle;">
+        <![endif]-->
+        <div style="font-size: 12px; color: #666666; margin-bottom: 2px; line-height: 1.2;">YEAR TO DATE</div>
+        <div style="font-weight: bold; font-size: 16px; color: #333333; line-height: 1.2;"><%= formatNumber(yearToDateAppointments) %></div>
+        <!--[if mso]>
+            </td>
+          </tr>
+        </table>
+        <![endif]-->
       </div>
     </td>
     
     <!-- Last Quarter -->
-    <td style="width: 14.28%; padding: 0 1.25% 10px 1.25%; vertical-align: top;">
-      <div style="border: 1px solid #ccc; background-color: #fff; border-radius: 10px; padding: 10px; text-align: center; height: 30px; width: 100%; display: table;">
-        <div style="display: table-cell; vertical-align: middle;">
-          <div style="font-size: 12px; color: #666; margin-bottom: 2px;">LAST QUARTER</div>
-          <div style="font-weight: bold; font-size: 16px; color: #333;"><%= formatNumber(lastQuarterAppointments) %></div>
-        </div>
+    <td width="14.28%" style="width: 14.28%; padding: 0 5px 10px 5px; vertical-align: top;">
+      <div style="border: 1px solid #cccccc; background-color: #ffffff; border-radius: 10px; padding: 10px; text-align: center; min-height: 50px;">
+        <!--[if mso]>
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" height="50">
+          <tr>
+            <td bgcolor="#ffffff" style="border: 1px solid #cccccc; padding: 10px; text-align: center; vertical-align: middle;">
+        <![endif]-->
+        <div style="font-size: 12px; color: #666666; margin-bottom: 2px; line-height: 1.2;">LAST QUARTER</div>
+        <div style="font-weight: bold; font-size: 16px; color: #333333; line-height: 1.2;"><%= formatNumber(lastQuarterAppointments) %></div>
+        <!--[if mso]>
+            </td>
+          </tr>
+        </table>
+        <![endif]-->
       </div>
     </td>
 
     <!-- This Quarter -->
-    <td style="width: 14.28%; padding: 0 1.25% 10px 1.25%; vertical-align: top;">
-      <div style="border: 1px solid #ccc; background-color: #fff; border-radius: 10px; padding: 10px; text-align: center; height: 30px; width: 100%; display: table;">
-        <div style="display: table-cell; vertical-align: middle;">
-          <div style="font-size: 12px; color: #666; margin-bottom: 2px;">THIS QUARTER</div>
-          <div style="font-weight: bold; font-size: 16px; color: #333;"><%= formatNumber(thisQuarterAppointments) %></div>
-        </div>
+    <td width="14.28%" style="width: 14.28%; padding: 0 5px 10px 5px; vertical-align: top;">
+      <div style="border: 1px solid #cccccc; background-color: #ffffff; border-radius: 10px; padding: 10px; text-align: center; min-height: 50px;">
+        <!--[if mso]>
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" height="50">
+          <tr>
+            <td bgcolor="#ffffff" style="border: 1px solid #cccccc; padding: 10px; text-align: center; vertical-align: middle;">
+        <![endif]-->
+        <div style="font-size: 12px; color: #666666; margin-bottom: 2px; line-height: 1.2;">THIS QUARTER</div>
+        <div style="font-weight: bold; font-size: 16px; color: #333333; line-height: 1.2;"><%= formatNumber(thisQuarterAppointments) %></div>
+        <!--[if mso]>
+            </td>
+          </tr>
+        </table>
+        <![endif]-->
       </div>
     </td>
 
     <!-- Last Month -->
-    <td style="width: 14.28%; padding: 0 1.25% 10px 1.25%; vertical-align: top;">
-      <div style="border: 1px solid #ccc; background-color: #fff; border-radius: 10px; padding: 10px; text-align: center; height: 30px; width: 100%; display: table;">
-        <div style="display: table-cell; vertical-align: middle;">
-          <div style="font-size: 12px; color: #666; margin-bottom: 2px;">LAST MONTH</div>
-          <div style="font-weight: bold; font-size: 16px; color: #333;"><%= formatNumber(lastMonthAppointments) %></div>
-        </div>
+    <td width="14.28%" style="width: 14.28%; padding: 0 5px 10px 5px; vertical-align: top;">
+      <div style="border: 1px solid #cccccc; background-color: #ffffff; border-radius: 10px; padding: 10px; text-align: center; min-height: 50px;">
+        <!--[if mso]>
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" height="50">
+          <tr>
+            <td bgcolor="#ffffff" style="border: 1px solid #cccccc; padding: 10px; text-align: center; vertical-align: middle;">
+        <![endif]-->
+        <div style="font-size: 12px; color: #666666; margin-bottom: 2px; line-height: 1.2;">LAST MONTH</div>
+        <div style="font-weight: bold; font-size: 16px; color: #333333; line-height: 1.2;"><%= formatNumber(lastMonthAppointments) %></div>
+        <!--[if mso]>
+            </td>
+          </tr>
+        </table>
+        <![endif]-->
       </div>
     </td>
     
     <!-- This Month -->
-    <td style="width: 14.28%; padding: 0 1.25% 10px 1.25%; vertical-align: top;">
-      <div style="border: 1px solid #ccc; background-color: #fff; border-radius: 10px; padding: 10px; text-align: center; height: 30px; width: 100%; display: table;">
-        <div style="display: table-cell; vertical-align: middle;">
-          <div style="font-size: 12px; color: #666; margin-bottom: 2px;">THIS MONTH</div>
-          <div style="font-weight: bold; font-size: 16px; color: #333;"><%= formatNumber(thisMonthAppointments) %></div>
-        </div>
+    <td width="14.28%" style="width: 14.28%; padding: 0 5px 10px 5px; vertical-align: top;">
+      <div style="border: 1px solid #cccccc; background-color: #ffffff; border-radius: 10px; padding: 10px; text-align: center; min-height: 50px;">
+        <!--[if mso]>
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" height="50">
+          <tr>
+            <td bgcolor="#ffffff" style="border: 1px solid #cccccc; padding: 10px; text-align: center; vertical-align: middle;">
+        <![endif]-->
+        <div style="font-size: 12px; color: #666666; margin-bottom: 2px; line-height: 1.2;">THIS MONTH</div>
+        <div style="font-weight: bold; font-size: 16px; color: #333333; line-height: 1.2;"><%= formatNumber(thisMonthAppointments) %></div>
+        <!--[if mso]>
+            </td>
+          </tr>
+        </table>
+        <![endif]-->
       </div>
     </td>
      
     <!-- Most in One Day -->
-    <td style="width: 14.28%; padding: 0 20px 10px 1.25%; vertical-align: top;">
-      <div style="border: 1px solid #ccc; background-color: #fff; border-radius: 10px; padding: 10px; text-align: center; height: 30px; width: 100%; display: table;">
-        <div style="display: table-cell; vertical-align: middle;">
-          <div style="font-size: 12px; color: #666; margin-bottom: 2px;">MOST IN ONE DAY</div>
-          <div style="font-weight: bold; font-size: 16px; color: #333;"><%= formatNumber(maxCount) %></div>
-        </div>
+    <td width="14.28%" style="width: 14.28%; padding: 0 0 10px 5px; vertical-align: top;">
+      <div style="border: 1px solid #cccccc; background-color: #ffffff; border-radius: 10px; padding: 10px; text-align: center; min-height: 50px;">
+        <!--[if mso]>
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" height="50">
+          <tr>
+            <td bgcolor="#ffffff" style="border: 1px solid #cccccc; padding: 10px; text-align: center; vertical-align: middle;">
+        <![endif]-->
+        <div style="font-size: 12px; color: #666666; margin-bottom: 2px; line-height: 1.2;">MOST IN ONE DAY</div>
+        <div style="font-weight: bold; font-size: 16px; color: #333333; line-height: 1.2;"><%= formatNumber(maxCount) %></div>
+        <!--[if mso]>
+            </td>
+          </tr>
+        </table>
+        <![endif]-->
       </div>
     </td>
   </tr>
 </table>
 
-  <% if (activeDays.length === 0) { %>
-    <div>No appointments found in the specified date range.</div>
-  <% } else { %>
-    <table cellpadding="0" cellspacing="2" border="0" style="table-layout: fixed; border-collapse: separate; width:100%">
-      <!-- Month labels -->
-      <tr style="height: 20px;">
-        <td style="width: 30px;"></td>
-        <% 
-        // Get all visible cells in chronological order
-        const visibleDays = [];
-        weeksData.forEach(week => {
-          week.days.forEach((day, dayIndex) => {
-            if (day.isWithinRange && daysWithAppointments[dayIndex]) {
-              visibleDays.push({...day, weekIndex: week});
-            }
-          });
-        });
-
-        // Calculate total columns
-        const totalCols = weeksData.length * 4;
-
-        // Calculate month spans based on weeks
-        let monthSpans = [];
-        let currentMonth = null;
-        let startWeek = 0;
-
-        weeksData.forEach((week, weekIndex) => {
-          week.days.forEach(day => {
-            if (day.isWithinRange) {
-              if (day.date.getDate() === 1 || currentMonth === null) {
-                if (currentMonth !== null) {
-                  monthSpans.push({
-                    name: monthNames[currentMonth],
-                    startCol: startWeek * 4,
-                    colSpan: (weekIndex - startWeek) * 4
-                  });
-                }
-                currentMonth = day.date.getMonth();
-                startWeek = weekIndex;
-              }
-            }
-          });
-        });
-
-        // Add the last month
-        if (currentMonth !== null) {
-          monthSpans.push({
-            name: monthNames[currentMonth],
-            startCol: startWeek * 4,
-            colSpan: (weeksData.length - startWeek) * 4
-          });
-        }
-        
-        // Render month labels
-        monthSpans.forEach(month => { %>
-          <td colspan="<%= month.colSpan %>" style="text-align: left; font-size: 12px; padding-left: 5px;"><%= month.name %></td>
-        <% }); %>
-      </tr>
+<!-- Heatmap Grid -->
+<% if (activeDays.length === 0) { %>
+  <div style="padding: 20px; text-align: center; color: #666666;">No appointments found in the specified date range.</div>
+<% } else { %>
+  <table role="presentation" cellpadding="0" cellspacing="2" border="0" width="100%" style="width: 100%; margin-bottom: 15px;">
+    <!-- Month labels -->
+    <tr>
+      <td width="30" style="width: 30px;"></td>
+      <% 
+      // Calculate month spans
+      let monthSpans = [];
+      let currentMonth = null;
+      let monthStartCol = 0;
+      let colIndex = 0;
       
-      <!-- Days and cells -->
-      <% for (let i = 0; i < activeDaysIndices.length; i++) {
-        const dayIndex = activeDaysIndices[i]; %>
-        <tr style="height:20px;">
-          <td style="text-align: right; padding-right: 5px; font-size: 12px;" colspan="2"><%= daysOfWeek[dayIndex] %></td>
-          <% for (let j = 0; j < weeksData.length; j++) {
-            const day = weeksData[j].days[dayIndex];
-            if (day.isWithinRange) { %>
-              <td title="<%= monthNames[day.month-1] %> <%= day.day %>, <%= day.year %>: <%= day.count %> appointment<%= day.count !== 1 ? 's' : '' %>" colspan="4"
-                  style="background-color: <%= day.color %>; padding: 0; margin: 0;"></td>
-            <% } else { %>
-              <td style="min-height: 11px; background-color: <%= day.color %>; padding: 0; margin: 0;" colspan="4"></td>
-            <% }
-          } %>
-        </tr>
-      <% } %>
-    </table>
+      weeksData.forEach((week, weekIndex) => {
+        const firstDayOfWeek = week.days.find(day => day.isWithinRange);
+        if (firstDayOfWeek) {
+          const weekMonth = firstDayOfWeek.date.getMonth();
+          if (currentMonth === null || currentMonth !== weekMonth) {
+            if (currentMonth !== null) {
+              monthSpans.push({
+                name: monthNames[currentMonth],
+                colspan: colIndex - monthStartCol
+              });
+            }
+            currentMonth = weekMonth;
+            monthStartCol = colIndex;
+          }
+        }
+        colIndex++;
+      });
+      
+      // Add the last month
+      if (currentMonth !== null) {
+        monthSpans.push({
+          name: monthNames[currentMonth],
+          colspan: colIndex - monthStartCol
+        });
+      }
+      
+      // Render month labels
+      monthSpans.forEach(month => { %>
+        <td colspan="<%= month.colspan %>" style="text-align: left; font-size: 12px; padding-left: 5px; color: #333333;">
+          <%= month.name %>
+        </td>
+      <% }); %>
+    </tr>
     
-    <!-- Color legend -->
-    <div style="margin-top: 15px;">
-      <table cellpadding="3" cellspacing="1" border="0">
-        <tr>
-          <td style="font-size: 11px;">Less (<%= colorThresholds[0].label %>)</td>
-          <% colorThresholds.forEach(threshold => { %>
-            <td style="width: 11px; height: 11px; background-color: <%= threshold.color %>;"></td>
-          <% }); %>
-          <td style="font-size: 11px;">More (<%= colorThresholds[4].label %>)</td>
-        </tr>
-      </table>
-    </div>
-  <% } %>
+    <!-- Heatmap rows -->
+    <% for (let i = 0; i < activeDaysIndices.length; i++) {
+      const dayIndex = activeDaysIndices[i]; %>
+      <tr>
+        <td width="30" style="width: 30px; text-align: right; padding-right: 5px; font-size: 12px; color: #333333;">
+          <%= daysOfWeek[dayIndex] %>
+        </td>
+        <% for (let j = 0; j < weeksData.length; j++) {
+          const day = weeksData[j].days[dayIndex];
+          if (day && day.isWithinRange) { 
+            const tooltipText = `${monthNames[day.month-1]} ${day.day}, ${day.year}: ${day.count} appointment${day.count !== 1 ? 's' : ''}`;
+          %>
+            <td width="11" height="11" bgcolor="<%= day.color %>" style="width: 11px; height: 11px; padding: 0; margin: 0; font-size: 1px; line-height: 1px;" title="<%= tooltipText %>">
+              <!--[if mso]>
+              <v:rect xmlns:v="urn:schemas-microsoft-com:vml" stroked="false" style="width:11px;height:11px;display:inline-block;">
+                <v:fill type="solid" color="<%= day.color %>"/>
+              </v:rect>
+              <![endif]-->
+              <!--[if !mso]><!-->
+              <div style="width: 11px; height: 11px; background-color: <%= day.color %>; font-size: 1px; line-height: 1px;">&nbsp;</div>
+              <!--<![endif]-->
+            </td>
+          <% } else { %>
+            <td width="11" height="11" bgcolor="#FFFFFF" style="width: 11px; height: 11px; padding: 0; margin: 0; font-size: 1px; line-height: 1px;">
+              <div style="width: 11px; height: 11px; font-size: 1px; line-height: 1px;">&nbsp;</div>
+            </td>
+          <% }
+        } %>
+      </tr>
+    <% } %>
+  </table>
+  
+  <!-- Color legend -->
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top: 15px;">
+    <tr>
+      <td style="font-size: 11px; padding-right: 5px; color: #666666;">Less (<%= colorThresholds[0].label %>)</td>
+      <% colorThresholds.forEach(threshold => { %>
+        <td width="11" height="11" bgcolor="<%= threshold.color %>" style="width: 11px; height: 11px; padding: 0 2px;">
+          <!--[if mso]>
+          <v:rect xmlns:v="urn:schemas-microsoft-com:vml" stroked="false" style="width:11px;height:11px;display:inline-block;">
+            <v:fill type="solid" color="<%= threshold.color %>"/>
+          </v:rect>
+          <![endif]-->
+          <!--[if !mso]><!-->
+          <div style="width: 11px; height: 11px; background-color: <%= threshold.color %>; font-size: 1px; line-height: 1px;">&nbsp;</div>
+          <!--<![endif]-->
+        </td>
+      <% }); %>
+      <td style="font-size: 11px; padding-left: 5px; color: #666666;">More (<%= colorThresholds[4].label %>)</td>
+    </tr>
+  </table>
+<% } %>

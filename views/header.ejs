@@ -1,20 +1,20 @@
 <!-- Header Section -->
-<table style="width: 100%; border-bottom: 1px solid black; padding-bottom: 10px;">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="width: 100%; border-bottom: 1px solid black; padding-bottom: 10px;">
     <tr>
-        <td style="text-align: left;">
-            <p id="name" style="margin: 0; font-weight: bold;">
+        <td style="text-align: left; padding: 0; vertical-align: top;">
+            <p id="name" style="margin: 0; font-weight: bold; font-size: 16px; line-height: 1.2;">
                 <%= recipient.name.toUpperCase() %>
             </p>
-            <p id="title" style="margin: 0;">
+            <p id="title" style="margin: 0; font-size: 14px; line-height: 1.2;">
                 <%= recipient.title.toUpperCase() %>
             </p>
-            <p id="digest-title" style="margin: 0;">
+            <p id="digest-title" style="margin: 0; font-size: 14px; line-height: 1.2;">
                 WEEKLY ADVISOR DIGEST
             </p>
-            <p id="current-date" style="margin: 0; font-size: 0.9em;"></p>
+            <p id="current-date" style="margin: 0; font-size: 12px; line-height: 1.2;"></p>
         </td>
-        <td id="calendar-week" style="text-align: right;">
-            <table style="border-collapse: collapse; float: right;">
+        <td id="calendar-week" style="text-align: right; padding: 0; vertical-align: top;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="right" style="border-collapse: collapse;">
                 <tr>
                     <% 
                     // Get current time in PST
@@ -32,12 +32,12 @@
                         const dayName = currentDate.toLocaleString('en-US', { weekday: 'short' });
                         const dayNumber = currentDate.getDate();
                     %>
-                    <td style="width: 40px; padding: 0 5px; <%= i < 6 ? 'border-right: 1px solid black;' : '' %> text-align: center;">
+                    <td width="50" style="width: 50px; padding: 0 5px; <%= i < 6 ? 'border-right: 1px solid black;' : '' %> text-align: center;">
                         <div style="<%= isToday ? 'background-color: black;' : '' %> padding: 5px; border-radius: 25px;">
-                            <div style="padding: 0 5px; text-align: center; <%= isToday ? 'color: white;' : '' %>">
+                            <div style="padding: 0 5px; text-align: center; <%= isToday ? 'color: white;' : 'color: #333333;' %> font-size: 12px; line-height: 1.2;">
                                 <%= dayName %>
                             </div>
-                            <div style="padding: 0 5px; text-align: center; <%= isToday ? 'color: white;' : '' %> font-weight: bold;">
+                            <div style="padding: 0 5px; text-align: center; <%= isToday ? 'color: white;' : 'color: #333333;' %> font-weight: bold; font-size: 14px; line-height: 1.2;">
                                 <%= dayNumber %>
                             </div>
                         </div>
