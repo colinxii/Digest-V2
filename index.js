@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
   res.status(200).send('CRM Digest API is running! Visit /weekly-advisor-digest/test to see a sample digest.');
 });
 
-app.get('/weekly-advisor-digest/test', checkJwt, async (req, res, next) => {
+app.get('/weekly-advisor-digest/test', async (req, res, next) => {
   try {
     const rawData = await fs.promises.readFile(path.join(__dirname, 'test-digest-payload.json'));
     const digestData = JSON.parse(rawData);
