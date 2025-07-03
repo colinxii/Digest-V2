@@ -63,12 +63,16 @@
                     <td style="text-align: center; padding-top: 5px; padding-bottom: 10px;">
                         <div style="width: 100%; text-align: center; white-space: nowrap;">
                             <% 
-                            // Calculate segment width as percentage to fill container width
-                            // Use 90% total width to account for margins and prevent overflow
-                            const segmentWidth = (90 / target).toFixed(2);
+                            // Calculate segment width accounting for gaps between segments
+                            // Use 85% total width and subtract gap space (2px per gap)
+                            const gapWidth = 2; // 2px gap between segments
+                            const totalGaps = target - 1; // number of gaps between segments
+                            const availableWidth = 85; // percentage of container to use
+                            const segmentWidth = ((availableWidth - (totalGaps * 0.5)) / target).toFixed(2); // 0.5% per 2px gap
+                            
                             for(let i = 0; i < target; i++) { 
                             %>
-                                <span style="display: inline-block; width: <%= segmentWidth %>%; height: 6px; margin: 0; border: 1px solid #000; background-color: <%= i < filledSegments ? '#000' : '#fff' %>; box-sizing: border-box; vertical-align: top;"></span>
+                                <span style="display: inline-block; width: <%= segmentWidth %>%; height: 6px; margin-right: <%= i < target - 1 ? gapWidth + 'px' : '0' %>; border: 1px solid #000; background-color: <%= i < filledSegments ? '#000' : '#fff' %>; box-sizing: border-box; vertical-align: top;"></span>
                             <% } %>
                         </div>
                     </td>
