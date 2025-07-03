@@ -49,49 +49,49 @@
     ],
     "renewing_mortgages": [
         {
-            "date": "2025-06-30T10:00:00",
+            "date": "2025-07-30T10:00:00",
             "amount": 50000,
             "members": "Member 0",
             "last_update": "2025-10-01T10:00:00",
             "crm_link": "https://example.com/mortgage1"
         },
         {
-            "date": "2025-07-07T10:00:00",
+            "date": "2025-07-08T10:00:00",
             "amount": 75000,
             "members": "Member A, Member B",
             "last_update": "2025-05-01T10:00:00",
             "crm_link": "https://example.com/mortgage2"
         },
         {
-            "date": "2025-07-14T10:00:00",
+            "date": "2025-08-14T10:00:00",
             "amount": 120000,
             "members": "Member C",
             "last_update": "2025-05-01T10:00:00",
             "crm_link": "https://example.com/mortgage3"
         },
         {
-            "date": "2025-06-30T10:00:00",
+            "date": "2025-08-30T10:00:00",
             "amount": 95000,
             "members": "Member D, Member E",
             "last_update": "2025-05-01T10:00:00",
             "crm_link": "https://example.com/mortgage4"
         },
         {
-            "date": "2025-07-07T10:00:00",
+            "date": "2025-09-07T10:00:00",
             "amount": 60000,
             "members": "Member F",
             "last_update": "2025-05-01T10:00:00",
             "crm_link": "https://example.com/mortgage5"
         },
         {
-            "date": "2025-07-14T10:00:00",
+            "date": "2025-07-13T10:00:00",
             "amount": 80000,
             "members": "Member G, Member H",
             "last_update": "2025-05-01T10:00:00",
             "crm_link": "https://example.com/mortgage6"
         },
         {
-            "date": "2025-06-30T10:00:00",
+            "date": "2025-07-23T10:00:00",
             "amount": 110000,
             "members": "Member I",
             "last_update": "2025-05-01T10:00:00",
