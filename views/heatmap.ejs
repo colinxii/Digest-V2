@@ -317,7 +317,7 @@ function formatNumber(num) {
         
         // Render month labels
         monthSpans.forEach(month => { %>
-          <td colspan="<%= month.colSpan %>" style="text-align: left; font-size: 14px; padding-left: 5px;"><%= month.name %></td>
+          <td colspan="<%= month.colSpan %>" style="text-align: left; font-size: 12px; padding-left: 5px;"><%= month.name %></td>
         <% }); %>
       </tr>
       
@@ -325,7 +325,7 @@ function formatNumber(num) {
       <% for (let i = 0; i < activeDaysIndices.length; i++) {
         const dayIndex = activeDaysIndices[i]; %>
         <tr style="height:20px;">
-          <td style="text-align: right; padding-right: 5px; font-size: 12px;" colspan="1"><%= daysOfWeek[dayIndex] %></td>
+          <td style="text-align: right; padding-right: 5px; font-size: 12px;" colspan="2"><%= daysOfWeek[dayIndex] %></td>
           <% for (let j = 0; j < weeksData.length; j++) {
             const day = weeksData[j].days[dayIndex];
             if (day.isWithinRange) { %>
