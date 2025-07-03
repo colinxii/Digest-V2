@@ -1,11 +1,13 @@
 <% if (!matured_mortgages || matured_mortgages.length === 0) return; %>
 <!-- UNACTIONED AND MATURED MORTGAGES Section -->
 <table style="width: 100%; margin-top: 20px;">
-    <tr>
-        <td colspan="4" style="padding: 10px; background-color: #f0f0f0; text-align: center; font-weight: bold; font-size: 18px;">
-            UNACTIONED AND MATURED MORTGAGES
-        </td>
-    </tr>
+  <tr>
+    <td colspan="100%" style="padding: 0 0 10px 0;">
+      <div style="border: 1px solid #ccc; background-color: #ECECEC; border-radius: 10px; padding: 15px; text-align: center;">
+        <div style="font-weight: bold; font-size: 18px; color: #333;">UNACTIONED AND MATURED MORTGAGES</div>
+      </div>
+    </td>
+  </tr>
     <% 
     // Break mortgages into groups of 4
     for(let i = 0; i < matured_mortgages.length; i += 4) { 
