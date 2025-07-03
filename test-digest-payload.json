@@ -5,42 +5,42 @@
     },
     "matured_mortgages": [
         {
-            "date": "2025-01-04T10:00:00",
+            "date": "2025-06-30T10:00:00",
             "amount": 500000,
             "members": "Surname1",
             "last_update": "2025-01-04T10:00:00",
             "crm_link": "https://example.com/mortgage1"
         },
         {
-            "date": "2025-01-11T10:00:00",
+            "date": "2025-07-07T10:00:00",
             "amount": 1200000,
             "members": "Surname2",
             "last_update": "2025-06-17T08:00:00",
             "crm_link": "https://example.com/mortgage1"
         },
         {
-            "date": "2025-02-14T10:00:00",
+            "date": "2025-07-14T10:00:00",
             "amount": 670000,
             "members": "Surname3",
             "last_update": "2025-05-11T10:00:00",
             "crm_link": "https://example.com/mortgage1"
         },
         {
-            "date": "2025-02-28T10:00:00",
+            "date": "2025-06-30T10:00:00",
             "amount": 340000,
             "members": "Surname4",
             "last_update": "2025-06-11T10:00:00",
             "crm_link": "https://example.com/mortgage1"
         },
         {
-            "date": "2025-02-28T10:00:00",
+            "date": "2025-07-07T10:00:00",
             "amount": 5000000,
             "members": "Surname5",
             "last_update": "2025-01-11T10:00:00",
             "crm_link": "https://example.com/mortgage1"
         },
         {
-            "date": "2025-02-28T10:00:00",
+            "date": "2025-07-14T10:00:00",
             "amount": 4000,
             "members": "Surname6",
             "last_update": "2025-01-11T10:00:00",
@@ -49,77 +49,77 @@
     ],
     "renewing_mortgages": [
         {
-            "date": "2025-10-01T10:00:00",
+            "date": "2025-06-30T10:00:00",
             "amount": 50000,
             "members": "Member 0",
             "last_update": "2025-10-01T10:00:00",
             "crm_link": "https://example.com/mortgage1"
         },
         {
-            "date": "2025-05-15T10:00:00",
+            "date": "2025-07-07T10:00:00",
             "amount": 75000,
             "members": "Member A, Member B",
             "last_update": "2025-05-01T10:00:00",
             "crm_link": "https://example.com/mortgage2"
         },
         {
-            "date": "2025-05-20T10:00:00",
+            "date": "2025-07-14T10:00:00",
             "amount": 120000,
             "members": "Member C",
             "last_update": "2025-05-01T10:00:00",
             "crm_link": "https://example.com/mortgage3"
         },
         {
-            "date": "2025-05-25T10:00:00",
+            "date": "2025-06-30T10:00:00",
             "amount": 95000,
             "members": "Member D, Member E",
             "last_update": "2025-05-01T10:00:00",
             "crm_link": "https://example.com/mortgage4"
         },
         {
-            "date": "2025-05-30T10:00:00",
+            "date": "2025-07-07T10:00:00",
             "amount": 60000,
             "members": "Member F",
             "last_update": "2025-05-01T10:00:00",
             "crm_link": "https://example.com/mortgage5"
         },
         {
-            "date": "2025-06-10T10:00:00",
+            "date": "2025-07-14T10:00:00",
             "amount": 80000,
             "members": "Member G, Member H",
             "last_update": "2025-05-01T10:00:00",
             "crm_link": "https://example.com/mortgage6"
         },
         {
-            "date": "2025-06-20T10:00:00",
+            "date": "2025-06-30T10:00:00",
             "amount": 110000,
             "members": "Member I",
             "last_update": "2025-05-01T10:00:00",
             "crm_link": "https://example.com/mortgage7"
         },
         {
-            "date": "2025-06-25T10:00:00",
+            "date": "2025-07-07T10:00:00",
             "amount": 70000,
             "members": "Member J, Member K",
             "last_update": "2025-05-01T10:00:00",
             "crm_link": "https://example.com/mortgage8"
         },
         {
-            "date": "2025-07-15T10:00:00",
+            "date": "2025-07-14T10:00:00",
             "amount": 90000,
             "members": "Member L",
             "last_update": "2025-05-01T10:00:00",
             "crm_link": "https://example.com/mortgage9"
         },
         {
-            "date": "2025-07-20T10:00:00",
+            "date": "2025-06-30T10:00:00",
             "amount": 105000,
             "members": "Member M, Member N",
             "last_update": "2025-05-01T10:00:00",
             "crm_link": "https://example.com/mortgage10"
         },
         {
-            "date": "2025-08-01T10:00:00",
+            "date": "2025-07-07T10:00:00",
             "amount": 115000,
             "members": "Member O",
             "last_update": "2025-05-01T10:00:00",
@@ -128,7 +128,7 @@
     ],
     "appointments":  [
     {
-        "date": "2025-06-16T09:00:00",
+            "date": "2025-06-30T09:00:00",
         "members": "Member 0",
         "crm_link": "https://example.com/appointment1",
         "coconut_link": "https://example.com/coconut1",
@@ -136,7 +136,7 @@
         "last_update": "2025-06-16T09:00:00"
     },
     {
-        "date": "2025-06-16T14:00:00",
+            "date": "2025-06-30T14:00:00",
         "members": "Member 00",
         "crm_link": "https://example.com/appointment1",
         "coconut_link": "https://example.com/coconut1",
@@ -144,7 +144,7 @@
         "last_update": "2025-06-16T14:00:00"
     },
     {
-        "date": "2025-06-17T10:00:00",
+            "date": "2025-07-07T10:00:00",
         "members": "Member A, Member B",
         "crm_link": "https://example.com/appointment2",
         "coconut_link": "https://example.com/coconut2",
@@ -152,7 +152,7 @@
         "last_update": "2025-06-17T10:00:00"
     },
     {
-        "date": "2025-06-17T15:00:00",
+            "date": "2025-07-07T15:00:00",
         "members": "Member C",
         "crm_link": "https://example.com/appointment3",
         "coconut_link": "https://example.com/coconut3",
@@ -160,7 +160,7 @@
         "last_update": "2025-06-17T15:00:00"
     },
     {
-        "date": "2025-06-18T09:30:00",
+            "date": "2025-07-14T09:30:00",
         "members": "Member D, Member E",
         "crm_link": "https://example.com/appointment4",
         "coconut_link": "https://example.com/coconut4",
@@ -168,7 +168,7 @@
         "last_update": "2025-06-17T09:30:00"
     },
     {
-        "date": "2025-06-18T14:00:00",
+            "date": "2025-06-30T14:00:00",
         "members": "Member F",
         "crm_link": "https://example.com/appointment5",
         "coconut_link": "https://example.com/coconut5",
@@ -176,7 +176,7 @@
         "last_update": "2025-06-17T14:10:00"
     },
     {
-        "date": "2025-06-19T11:00:00",
+            "date": "2025-07-07T11:00:00",
         "members": "Member G, Member H",
         "crm_link": "https://example.com/appointment6",
         "coconut_link": "https://example.com/coconut6",
@@ -184,7 +184,7 @@
         "last_update": "2025-05-19T11:00:00"
     },
     {
-        "date": "2025-06-19T16:30:00",
+            "date": "2025-07-14T16:30:00",
         "members": "Member I",
         "crm_link": "https://example.com/appointment7",
         "coconut_link": "https://example.com/coconut7",
@@ -192,7 +192,7 @@
         "last_update": "2025-05-19T16:30:00"
     },
     {
-        "date": "2025-06-20T10:00:00",
+            "date": "2025-06-30T10:00:00",
         "members": "Member J, Member K",
         "crm_link": "https://example.com/appointment8",
         "coconut_link": "https://example.com/coconut8",
@@ -200,7 +200,7 @@
         "last_update": "2025-05-20T10:00:00"
     },
     {
-        "date": "2025-06-20T13:30:00",
+            "date": "2025-07-07T13:30:00",
         "members": "Member L",
         "crm_link": "https://example.com/appointment9",
         "coconut_link": "https://example.com/coconut9",
@@ -208,7 +208,7 @@
         "last_update": "2025-05-20T13:30:00"
     },
     {
-        "date": "2025-06-23T09:00:00",
+            "date": "2025-07-14T09:00:00",
         "members": "Member M, Member N",
         "crm_link": "https://example.com/appointment10",
         "coconut_link": "https://example.com/coconut10",
@@ -216,7 +216,7 @@
         "last_update": "2025-05-23T09:00:00"
     },
     {
-        "date": "2025-06-23T15:30:00",
+            "date": "2025-06-30T15:30:00",
         "members": "Member O",
         "crm_link": "https://example.com/appointment11",
         "coconut_link": "https://example.com/coconut11",
@@ -224,7 +224,7 @@
         "last_update": "2025-05-23T15:30:00"
     },
     {
-        "date": "2025-06-24T10:00:00",
+            "date": "2025-07-07T10:00:00",
         "members": "Member P, Member Q",
         "crm_link": "https://example.com/appointment12",
         "coconut_link": "https://example.com/coconut12",
@@ -232,7 +232,7 @@
         "last_update": "2025-04-24T10:00:00"
     },
     {
-        "date": "2025-06-25T14:00:00",
+            "date": "2025-07-14T14:00:00",
         "members": "Member R",
         "crm_link": "https://example.com/appointment13",
         "coconut_link": "https://example.com/coconut13",
@@ -240,7 +240,7 @@
         "last_update": "2025-06-25T14:00:00"
     },
     {
-        "date": "2025-06-26T09:30:00",
+            "date": "2025-06-30T09:30:00",
         "members": "Member S, Member T",
         "crm_link": "https://example.com/appointment14",
         "coconut_link": "https://example.com/coconut14",
@@ -248,7 +248,7 @@
         "last_update": "2025-06-26T09:30:00"
     },
     {
-        "date": "2025-06-27T11:00:00",
+            "date": "2025-07-07T11:00:00",
         "members": "Member U",
         "crm_link": "https://example.com/appointment15",
         "coconut_link": "https://example.com/coconut15",
@@ -256,7 +256,7 @@
         "last_update": "2025-06-04T11:00:00"
     },
     {
-        "date": "2025-06-30T12:00:00",
+            "date": "2025-07-14T12:00:00",
         "members": "Member V, Member W",
         "crm_link": "https://example.com/appointment16",
         "coconut_link": "https://example.com/coconut16",
@@ -264,7 +264,7 @@
         "last_update": "2025-05-30T12:00:00"
     },
     {
-        "date": "2025-07-01T10:30:00",
+            "date": "2025-06-30T10:30:00",
         "members": "Member X",
         "crm_link": "https://example.com/appointment17",
         "coconut_link": "https://example.com/coconut17",

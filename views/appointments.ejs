@@ -1,7 +1,7 @@
 <!-- Upcoming Appointments Section -->
 <table style="width: 100%; margin-top: 20px;">
     <tr>
-        <td colspan="3" style="padding: 10px; background-color: #f0f0f0; text-align: center; font-weight: bold; font-size: 18px; margin-bottom: 30px;">
+        <td colspan="3" style="padding: 10px; background-color: #f0f0f0; text-align: center; font-weight: bold; font-size: 24px; margin-bottom: 30px;">
             UPCOMING APPOINTMENTS
         </td>
     </tr>
@@ -31,7 +31,7 @@
         const weeks = [
             { title: "THIS WEEK", dates: getWeekDates(0) },
             { title: "NEXT WEEK", dates: getWeekDates(1) },
-            { title: "IN TWO WEEKS", dates: getWeekDates(2) }
+            { title: "THE WEEK AFTER", dates: getWeekDates(2) }
         ];
         %>
 
@@ -45,10 +45,7 @@
         <td class="week" style="vertical-align: top; width: 33%; border: 1px solid #ccc; padding: 10px; background-color: #f9f9f9;">
             <table style="width: 100%;">
                 <tr>
-                    <td style="text-align: center; font-weight: bold; font-size: 16px;"><%= week.title %></td>
-                </tr>
-                <tr>
-                    <td style="text-align: center; font-size: 14px;"><%= weekAppointments.length %> Appointments</td>
+                    <td style="text-align: center; font-weight: normal; font-size: 20px;"> <% if (weekAppointments.length >= target) { %>&#127881;<% } %> <%= week.title %></td>
                 </tr>
                 <tr>
                     <td style="text-align: center; padding-top: 5px; padding-bottom: 10px;">
@@ -64,6 +61,7 @@
                         </div>
                     </td>
                 </tr>
+  
             </table>
             <% weekAppointments.forEach(function(appointment) { %>
             <div class="appointment" style="border: 1px solid #ccc; padding: 10px; background-color: #fff; border-radius: 10px; margin-top: 10px;">
