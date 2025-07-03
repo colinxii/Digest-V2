@@ -78,7 +78,7 @@
                         <td style="padding-left: 10px; vertical-align: top;">
                             <div style="font-weight: bold; font-size: 14px;"><%= appointment.service %></div>
                             <div style="margin-top: 2px; font-size: 14px;"><%= appointment.members %></div>
-                            <div style="margin-top: 2px; font-size: 12px;"><%= new Date(appointment.date).toLocaleString('en-US', { weekday: 'short' }).toUpperCase() %> - <%= new Date(appointment.date).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %></div>
+                            <div style="color: #666; margin-top: 2px; font-size: 12px;"><%= new Date(appointment.date).toLocaleString('en-US', { weekday: 'long' }) %>, <%= new Date(appointment.date).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %></div>
                         </td>
                         <td style="text-align: right; vertical-align: top; font-size: 10px;">
                             <a href="<%= appointment.crm_link %>" style="display: inline-block; background-color: black; color: white; text-decoration: none; padding: 5px; font-weight: bold; border-radius: 10px;">CRM</a>
