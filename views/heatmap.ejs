@@ -385,14 +385,6 @@ function formatNumber(num) {
             const tooltipText = `${monthNames[day.month-1]} ${day.day}, ${day.year}: ${day.count} appointment${day.count !== 1 ? 's' : ''}`;
           %>
             <td width="11" height="20" bgcolor="<%= day.color %>" style="width: 11px; height: 20px; padding: 0; margin: 0; font-size: 1px; line-height: 1px;" title="<%= tooltipText %>">
-              <!--[if mso]>
-              <v:rect xmlns:v="urn:schemas-microsoft-com:vml" stroked="false" style="width:11px;height:20px;display:inline-block;">
-                <v:fill type="solid" color="<%= day.color %>"/>
-              </v:rect>
-              <![endif]-->
-              <!--[if !mso]><!-->
-              <div style="width: 11px; height: 20px; background-color: <%= day.color %>; font-size: 1px; line-height: 1px;">&nbsp;</div>
-              <!--<![endif]-->
             </td>
           <% } else { %>
             <td width="11" height="20" bgcolor="#FFFFFF" style="width: 11px; height: 20px; padding: 0; margin: 0; font-size: 1px; line-height: 1px;">
