@@ -10,13 +10,8 @@ const dateKey = `${item.Year}-${item.Month}-${item.Day}`;
   appointmentMap[dateKey] = item.Count;
 });
 
-// Calculate statistics
-let totalAppointments = 0;
-let maxCount = 0;
-appointmentData.forEach(item => {
-  if (item.Count > maxCount) maxCount = item.Count;
-  totalAppointments += item.Count;
-});
+// Calculate statistics using utility function
+const { totalAppointments, maxCount } = calculateAppointmentStats(appointmentData);
 
 // Define color thresholds with fixed ranges
 const colorThresholds = [

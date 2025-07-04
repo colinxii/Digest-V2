@@ -1,0 +1,41 @@
+<!-- Reusable Card Component for Mortgages and Appointments -->
+<!-- 
+  Parameters expected:
+  - item: Object containing date, amount/service, members, crm_link, last_update
+  - type: 'mortgage' or 'appointment' 
+  - formatCardDate: Function to format dates
+  - getRelativeTimeString: Function for relative time
+-->
+<div style="border: 1px solid #ccc; padding: 10px; background-color: #fff; border-radius: 10px; margin-top: 10px;">
+    <table style="width: 100%; border-spacing: 0;">
+        <tr class="<%= type %>">
+            <td style="width: 60px; text-align: center; vertical-align: top;">
+                <% const cardDate = formatCardDate(item.date); %>
+                <div style="padding-top: 5px; background-color: black; color: white; width: 40px; height: 35px; text-align: center; line-height: 15px; border-radius: 100px;">
+                    <div style="font-size: 10px;"><%= cardDate.month %></div>
+                    <div style="font-size: 12px; font-weight: bold;"><%= cardDate.day %></div>
+                </div>
+            </td>
+            <td style="padding-left: 10px; vertical-align: top;">
+                <% if (type === 'mortgage') { %>
+                    <div style="font-weight: bold; font-size: 14px;">$<%= item.amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) %></div>
+                    <div style="margin-top: 2px; font-size: 14px;"><%= item.members %></div>
+                <% } else if (type === 'appointment') { %>
+                    <div style="font-weight: bold; font-size: 14px;"><%= item.service %></div>
+                    <div style="margin-top: 2px; font-size: 14px;"><%= item.members %></div>
+                    <div style="color: #666; margin-top: 2px; font-size: 12px;">
+                        <%= new Date(item.date).toLocaleString('en-US', { weekday: 'long' }) %>, 
+                        <%= new Date(item.date).toLocaleString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) %>
+                    </div>
+                <% } %>
+            </td>
+            <td style="text-align: right; vertical-align: top; font-size: 10px;">
+                <a href="<%= item.crm_link %>" style="display: inline-block; background-color: black; color: white; text-decoration: none; padding: 5px; font-weight: bold; border-radius: 10px;">CRM</a>
+            </td>
+        </tr>
+    </table>
+    <hr style="margin: 5px 0; border: none; border-top: 1px solid #ccc;">
+    <div style="font-style: italic; font-size: 10px; text-align: right;">
+        <%= getRelativeTimeString(item.last_update) %>
+    </div>
+</div>

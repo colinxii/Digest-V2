@@ -19,35 +19,21 @@
   </tr>
     <tr>
         <% 
-        const currentDate = today;
+        // Use utility function for date ranges
+        const dateRanges = getMortgageRenewingRanges(today);
         
-        function getDateRange(startDays, endDays) {
-            const startDate = new Date(currentDate);
-            const endDate = new Date(currentDate);
-            startDate.setDate(currentDate.getDate() + startDays);
-            endDate.setDate(currentDate.getDate() + endDays);
-            return { startDate, endDate };
-        }
-
-        function getMortgagesInRange(startDays, endDays) {
-            const { startDate, endDate } = getDateRange(startDays, endDays);
-            return renewing_mortgages.filter(mortgage => {
-                const mortgageDate = new Date(mortgage.date);
-                return mortgageDate >= startDate && mortgageDate <= endDate;
-            });
-        }
-
         const ranges = [
-            { id: '30Days', label: '30 DAYS', start: 0, end: 30 },
-            { id: '60Days', label: '60 DAYS', start: 31, end: 60 },
-            { id: '90Days', label: '90 DAYS', start: 61, end: 90 },
-            { id: '180Days', label: '180 DAYS', start: 91, end: 180 }
+            { id: '30Days', label: '30 DAYS', key: '30Days' },
+            { id: '60Days', label: '60 DAYS', key: '60Days' },
+            { id: '90Days', label: '90 DAYS', key: '90Days' },
+            { id: '180Days', label: '180 DAYS', key: '180Days' }
         ];
 
         %>
 
         <% ranges.forEach(function(range) { 
-            const mortgagesInRange = getMortgagesInRange(range.start, range.end);
+            const rangeData = dateRanges[range.key];
+            const mortgagesInRange = filterItemsByDateRange(renewing_mortgages, rangeData.startDate, rangeData.endDate);
             const totalAmount = mortgagesInRange.reduce((sum, mortgage) => sum + mortgage.amount, 0);
         %>
         <td id="<%= range.id %>" style="vertical-align: top; width: 25%; padding: 5px;">
@@ -77,27 +63,12 @@
                 </table>
             </div>
             <% mortgagesInRange.forEach(function(mortgage) { %>
-            <div style="border: 1px solid #ccc; padding: 10px; background-color: #fff; border-radius: 10px; margin-top: 10px;">
-                <table style="width: 100%; border-spacing: 0;">
-                    <tr class="mortgage-renewal">
-                        <td style="width: 60px; text-align: center; vertical-align: top;">
-                            <div style="padding-top: 5px; background-color: black; color: white; width: 40px; height: 35px; text-align: center; line-height: 15px; border-radius: 100px;">
-                                <div style="font-size: 10px;"><%= new Date(mortgage.date).toLocaleString('en-US', { month: 'short' }).toUpperCase() %></div>
-                                <div style="font-size: 12px; font-weight: bold;"><%= new Date(mortgage.date).getDate() %></div>
-                            </div>
-                        </td>
-                        <td style="padding-left: 10px; vertical-align: top;">
-                            <div style="font-weight: bold; font-size: 14px;">$<%= mortgage.amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) %></div>
-                            <div style="margin-top: 2px; font-size: 14px;"><%= mortgage.members %></div>
-                        </td>
-                        <td style="text-align: right; vertical-align: top; font-size: 10px;">
-                            <a href="<%= mortgage.crm_link %>" style="display: inline-block; background-color: black; color: white; text-decoration: none; padding: 5px; font-weight: bold; border-radius: 10px;">CRM</a>
-                        </td>
-                    </tr>
-                </table>
-                <hr style="margin: 5px 0; border: none; border-top: 1px solid #ccc;">
-                <div style="font-style: italic; font-size: 10px; text-align: right;"><%= getRelativeTimeString(mortgage.last_update) %></div>
-            </div>
+                <%- include('./card', { 
+                    item: mortgage, 
+                    type: 'mortgage', 
+                    formatCardDate: formatCardDate, 
+                    getRelativeTimeString: getRelativeTimeString 
+                }) %>
             <% }); %>
         </td>
         <% }); %>
