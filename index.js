@@ -1,9 +1,9 @@
 
 const express = require('express');
 const path = require('path');
-const fs = require('fs');
 
-const { getRelativeTimeString } = require('./utils/dateUtils');
+// Import route modules
+const advisorDigestRoutes = require('./routes/advisorDigest');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -15,48 +15,12 @@ app.set('views', path.join(__dirname));
 // Middleware
 app.use(express.json());
 
+// Mount route modules
+app.use('/advisor-digest', advisorDigestRoutes);
+
 // Routes
 app.get('/', (req, res) => {
-  res.status(200).send('CRM Digest API is running! Visit /weekly-advisor-digest/test to see a sample digest.');
-});
-
-app.get('/weekly-advisor-digest/test', async (req, res) => {
-  res.redirect('/weekly-advisor-digest/test/true');
-});
-
-app.get('/weekly-advisor-digest/test/:renderHtml', async (req, res, next) => {
-  try {
-    const rawData = await fs.promises.readFile(path.join(__dirname, 'test-digest-payload.json'));
-    const digestData = JSON.parse(rawData);
-    digestData.today = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
-    digestData.getRelativeTimeString = getRelativeTimeString;
-    console.log('Digest Data today:', digestData.today);
-    
-    const renderHtml = req.params.renderHtml === 'true';
-    console.log('Render HTML:', renderHtml, req.params.renderHtml);
-    
-    if (renderHtml) {
-      return res.render('views/advisordigest', digestData);
-    }
-    
-    res.render('views/advisordigest', digestData, (err, html) => {
-      if (err) {
-        console.error('Error rendering EJS template:', err);
-        return res.status(500).json({ error: 'An error occurred while rendering the digest template.' });
-      }
-
-      res.json({ success: true, digestHtml: html });
-    });
-  } catch (err) {
-    next(err);
-  }
-});
-
-app.post('/weekly-advisor-digest', (req, res) => {
-  var digestData = req.body;
-  digestData.today = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Los_Angeles' }));
-  digestData.getRelativeTimeString = getRelativeTimeString;
-  res.render('views/advisordigest', digestData);
+  res.status(200).send('CRM Digest API is running! Visit /advisor-digest/test to see a sample digest.');
 });
 
 app.get('/health', (req, res) => {
